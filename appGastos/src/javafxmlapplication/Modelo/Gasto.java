@@ -16,7 +16,7 @@ public class Gasto {
     private int coste;
     private String titulo;
     private String descripcion;
-    Gasto(String c, LocalDate f,int co, String t, String d){
+    public Gasto(String c, LocalDate f,int co, String t, String d){
         this.categoria=c;
         this.fecha= f;
         this.coste= co;

@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.Controlador.CuentaController">
+<BorderPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.Controlador.CuentaController">
    <top>
       <VBox prefHeight="27.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -39,13 +39,13 @@
       </VBox>
    </top>
    <center>
-      <TableView fx:id="tabla" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tabla" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../hojasDeEstilo/Tabla.css" BorderPane.alignment="CENTER">
         <columns>
-            <TableColumn prefWidth="75.0" text="Gasto" />
-            <TableColumn prefWidth="75.0" text="Categoría" />
-          <TableColumn prefWidth="75.0" text="Fecha" />
-          <TableColumn prefWidth="75.0" text="Coste" />
-            <TableColumn prefWidth="75.0" text="Descripcion" />
+            <TableColumn fx:id="cGasto" prefWidth="75.0" styleClass="table-column-header" text="Gasto" />
+            <TableColumn id="column" fx:id="cCat" prefWidth="75.0" styleClass="table-column-header" text="Categoría" />
+          <TableColumn fx:id="cFecha" prefWidth="75.0" styleClass="table-column-header" text="Fecha" />
+          <TableColumn fx:id="cCoste" prefWidth="75.0" styleClass="table-column-header" text="Coste" />
+            <TableColumn fx:id="cDesc" prefWidth="75.0" styleClass="table-column-header" text="Descripcion" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
