@@ -5,12 +5,10 @@
 package javafxmlapplication.Controlador;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafxmlapplication.Modelo.Gasto;
+import javafx.scene.control.TableView;
 
 /**
  * FXML Controller class
@@ -19,15 +17,16 @@ import javafxmlapplication.Modelo.Gasto;
  */
 public class CuentaController implements Initializable {
 
+    @FXML
+    private TableView<?> tabla;
+
     /**
      * Initializes the controller class.
      */
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ArrayList<Gasto> misdatos = new ArrayList<Gasto>();
-        ObservableList<Gasto> datos = FXCollections.observableList(misdatos);
-
+        String css = this.getClass().getResource("/hojasDeEstilo/Tabla.css").toExternalForm();
+        tabla.getStylesheets().add(css);
     }    
     
 }

@@ -12,8 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.Controlador.CuentaController">
    <top>
       <VBox prefHeight="27.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -40,7 +39,7 @@
       </VBox>
    </top>
    <center>
-      <TableView id="table" fx:id="tabla" prefHeight="200.0" prefWidth="200.0" stylesheets="@Tabla.css" BorderPane.alignment="CENTER">
+      <TableView fx:id="tabla" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
             <TableColumn prefWidth="75.0" text="Gasto" />
             <TableColumn prefWidth="75.0" text="Categoría" />
