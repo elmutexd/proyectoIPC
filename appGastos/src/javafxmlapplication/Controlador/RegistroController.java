@@ -4,6 +4,7 @@
  */
 package javafxmlapplication.Controlador;
 //holooooo
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -20,6 +21,8 @@ import javafx.scene.image.Image;
 import javafx.scene.text.Text;
 import javafxmlapplication.Modelo.Usuario;
 import javafxmlapplication.Controlador.VistaController;
+import model.Acount;
+import model.AcountDAOException;
 
 /**
  * FXML Controller class
@@ -62,7 +65,7 @@ public class RegistroController implements Initializable {
     }
 
     @FXML
-    private void aceptarR(ActionEvent event) {
+    private void aceptarR(ActionEvent event) throws AcountDAOException, IOException {
         errNickname.setVisible(false);
         errPassword.setVisible(false);
         usuarioAdded.setVisible(false);
@@ -88,7 +91,7 @@ public class RegistroController implements Initializable {
             errPassword.setVisible(true);
         }else{
             usuarioAdded.setVisible(true);
-            acount.registerUser(nombre,apellido,correo,nickname,password,fotoPerfil,fecha);
+            boolean aux = Acount.getInstance().registerUser(nombre,apellido,correo,nickname,password,fotoPerfil,fecha);
             Usuario.addUser(nombre, nickname, password, correo, fotoPerfil);
         
         }

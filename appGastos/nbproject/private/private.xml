@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Gabriel/Desktop/ipc/proyectoIPC/appGastos/src/hojasDeEstilo/Tabla.css</file>
-            <file>file:/C:/Users/Gabriel/Desktop/ipc/proyectoIPC/appGastos/src/javafxmlapplication/Controlador/CuentaController.java</file>
-            <file>file:/C:/Users/Gabriel/Desktop/ipc/proyectoIPC/appGastos/src/javafxmlapplication/Modelo/Gasto.java</file>
+            <file>file:/C:/Users/julil/Documents/Uni/2º/IPC/proyectoIPC/appGastos/src/javafxmlapplication/Controlador/VistaCatController.java</file>
+            <file>file:/C:/Users/julil/Documents/Uni/2º/IPC/proyectoIPC/appGastos/src/javafxmlapplication/Controlador/VistaListaControlador_1.java</file>
+            <file>file:/C:/Users/julil/Documents/Uni/2º/IPC/proyectoIPC/appGastos/src/javafxmlapplication/Vista/VistaLista.fxml</file>
+            <file>file:/C:/Users/julil/Documents/Uni/2º/IPC/proyectoIPC/appGastos/src/javafxmlapplication/Vista/VistaCat.fxml</file>
         </group>
     </open-files>
 </project-private>
