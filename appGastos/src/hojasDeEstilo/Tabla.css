@@ -2,47 +2,21 @@
 
 /* Estilo para la TableView */
 .table-view {
-    -fx-background-color: #f9f9f9;  /* Fondo de la tabla */
-    -fx-border-color: transparent;  /* Sin bordes */
-    -fx-table-cell-border-color: transparent; /* Sin bordes de celda */
-    -fx-padding: 10px; /* Padding alrededor de la tabla */
-}
-
-/* Estilo para las filas de la TableView */
-.table-row-cell {
-    -fx-background-color: transparent; /* Fondo transparente por defecto */
-    -fx-padding: 8px 10px; /* Padding dentro de las celdas */
-}
-
-.table-row-cell:odd {
-    -fx-background-color: #f1f1f1; /* Color alterno para filas impares */
-}
-
-.table-row-cell:even {
-    -fx-background-color: #ffffff; /* Color para filas pares */
-}
-
-/* Estilo para las celdas de la TableView */
-.table-cell {
-    -fx-border-color: transparent; /* Sin bordes */
-    -fx-text-fill: #333333; /* Color del texto */
-    -fx-font-size: 14px; /* Tamaño de la fuente */
-}
-
-/* Estilo para el encabezado de la TableView */
-
-
-.table-column-header .label {
-    -fx-font-weight: bold; /* Negrita para el texto del encabezado */
-}
-
-/* Estilo para la columna de selección (si aplica) */
-.table-view .column-header-background .label {
-    -fx-text-fill: #333333; /* Color del texto en la columna de selección */
-}
-
-/* Estilo para la fila seleccionada */
-.table-row-cell:selected {
-    -fx-background-color: #cfe3ff; /* Fondo de la fila seleccionada */
-    -fx-text-fill: #000000; /* Color del texto de la fila seleccionada */
-}
+                -fx-background-color: white;
+                -fx-border-color: lightgrey;
+                -fx-border-width: 1;
+                -fx-font-family: "Arial";
+                -fx-font-size: 14px;
+            }
+            .table-view .column-header-background {
+                -fx-background-color: #f0f0f0;
+            }
+            .table-view .column-header, .table-view .filler {
+                -fx-border-width: 0 0 1 0;
+                -fx-border-color: lightgrey;
+            }
+            .table-view .cell {
+                -fx-border-width: 0 0 1 0;
+                -fx-border-color: lightgrey;
+                -fx-padding: 5px;
+            }

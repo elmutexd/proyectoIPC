@@ -8,6 +8,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,8 +17,9 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafxmlapplication.Modelo.Gasto;
-
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import model.Charge;
 /**
  * FXML Controller class
  *
@@ -26,19 +28,21 @@ import javafxmlapplication.Modelo.Gasto;
 public class CuentaController implements Initializable {
 
     @FXML
-    private TableView<Gasto> tabla;
+    private TableView<Charge> tabla;
     @FXML
-    private TableColumn<Gasto, String> cGasto;
+    private TableColumn<Charge, String> cGasto;
     @FXML
-    private TableColumn<Gasto, String> cCat;
+    private TableColumn<Charge, String> cCat;
     @FXML
-    private TableColumn<Gasto, String> cFecha;
+    private TableColumn<Charge, String> cFecha;
     @FXML
-    private TableColumn<Gasto, String> cCoste;
+    private TableColumn<Charge, String> cCoste;
     @FXML
-    private TableColumn<Gasto, String> cDesc;
+    private TableColumn<Charge, String> cDesc;
     
-    private ObservableList<Gasto> datos=null;
+    private ObservableList<Charge> datos=null;
+    @FXML
+    private TableColumn<Charge, String> cImagen;
 
     /**
      * Initializes the controller class.
@@ -50,26 +54,38 @@ public class CuentaController implements Initializable {
         
     }
      private void iniModelo(){
-        ArrayList<Gasto> misdatos= new ArrayList<>();
-        LocalDate fecha = null;
-        misdatos.add(new Gasto("Restaurante",fecha,22,"Venta de Posa","Muy caro"));
+        ArrayList<Charge> misdatos= new ArrayList<>();
         datos = FXCollections.observableArrayList(misdatos);
         tabla.setItems(datos);
-            
+        cGasto.setCellValueFactory(
+                (cargo)-> new SimpleStringProperty(cargo.getValue().getName()) );
+        
+        cCat.setCellValueFactory(
+                (cargo)-> new SimpleStringProperty(cargo.getValue().getCategory().getName()) );
+        cFecha.setCellValueFactory(
+                (cargo)-> new SimpleStringProperty(cargo.getValue().getDate().toString()) ); 
+        cCoste.setCellValueFactory(
+                (cargo)-> new SimpleStringProperty((Double.toString(cargo.getValue().getCost())+"$")) );
+        cImagen.setCellValueFactory(new PropertyValueFactory<>("imageUrl"));
+        cImagen.setCellFactory(c-> new ImagenTabCell());
+        
     
     }
-     private class catCell extends TableCell<Gasto,String>{
-         
-         protected void updateItem(String t, boolean bln){
-             super.updateItem(t, bln);
-         
-         if(t==null || bln){
-            setText(null);
+     class ImagenTabCell extends TableCell<Charge, String> {
+            private ImageView view = new ImageView();
+            private Image imagen;
+            @Override
+            protected void updateItem(String t, boolean bln) {
+            super.updateItem(t, bln);
+            if (t == null || bln) {
+                setText(null);
+                setGraphic(null);
+            } else {
+                imagen = new Image(t, 25, 25, true, true);
+                view.setImage(imagen);
+                setGraphic(view);
+            }
         }
-         else{
-             setText(datos.get(0).getCategoria());
-             
-         }
-     }
-    }
+}
+     
 }
