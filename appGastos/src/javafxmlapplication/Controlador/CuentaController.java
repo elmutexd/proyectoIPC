@@ -4,21 +4,30 @@
  */
 package javafxmlapplication.Controlador;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import model.Charge;
 /**
  * FXML Controller class
@@ -43,6 +52,8 @@ public class CuentaController implements Initializable {
     private ObservableList<Charge> datos=null;
     @FXML
     private TableColumn<Charge, String> cImagen;
+    @FXML
+    private Button borrarButton;
 
     /**
      * Initializes the controller class.
@@ -50,7 +61,8 @@ public class CuentaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         iniModelo();
-        
+        borrarButton.setDisable(true);
+        borrarButton.disableProperty().bind(Bindings.equal(-1, tabla.getSelectionModel().selectedIndexProperty()));
         
     }
      private void iniModelo(){
@@ -68,8 +80,27 @@ public class CuentaController implements Initializable {
                 (cargo)-> new SimpleStringProperty((Double.toString(cargo.getValue().getCost())+"$")) );
         cImagen.setCellValueFactory(new PropertyValueFactory<>("imageUrl"));
         cImagen.setCellFactory(c-> new ImagenTabCell());
-        
-    
+    }
+
+    @FXML
+    private void añadir(ActionEvent event) throws IOException {
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("/javafxmlapplication/Vista/añadirGasto.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("App Gastos");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
+    }
+
+    @FXML
+    private void borrar(ActionEvent event) {
+    }
+
+    @FXML
+    private void salir(ActionEvent event) {
+        System.exit(0);
     }
      class ImagenTabCell extends TableCell<Charge, String> {
             private ImageView view = new ImageView();

@@ -16,7 +16,7 @@
    <top>
       <VBox prefHeight="27.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <MenuBar>
+            <MenuBar VBox.vgrow="ALWAYS">
               <menus>
                 <Menu mnemonicParsing="false" text="Archivo">
                   <items>
@@ -56,14 +56,17 @@
    <left>
       <VBox prefHeight="200.0" prefWidth="100.0" spacing="15.0" BorderPane.alignment="CENTER">
          <children>
-            <Label prefHeight="43.0" prefWidth="80.0" text="Cuenta" textFill="#ff1f1f">
+            <Label prefHeight="43.0" prefWidth="80.0" text="Cuenta" textFill="#ff1f1f" VBox.vgrow="ALWAYS">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="91.0" text="Añadir Gasto" />
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="70.0" text="Borrar" />
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="70.0" text="Button" />
+            <Button mnemonicParsing="false" onAction="#añadir" prefHeight="30.0" prefWidth="91.0" text="Añadir Gasto" VBox.vgrow="ALWAYS" />
+            <Button fx:id="borrarButton" mnemonicParsing="false" onAction="#borrar" prefHeight="30.0" prefWidth="85.0" text="Borrar" VBox.vgrow="ALWAYS" />
+            <Button mnemonicParsing="false" onAction="#salir" prefHeight="30.0" prefWidth="82.0" text="Salir" VBox.vgrow="ALWAYS">
+               <VBox.margin>
+                  <Insets top="190.0" />
+               </VBox.margin></Button>
          </children>
          <BorderPane.margin>
             <Insets left="10.0" />
