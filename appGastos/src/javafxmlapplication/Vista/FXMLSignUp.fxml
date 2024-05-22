@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="479.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.FXMLSignUpController">
+   <top>
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: #0685bc;" BorderPane.alignment="CENTER_LEFT">
+         <children>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="42.0" />
+               </font>
+            </Text>
+         </children>
+         <BorderPane.margin>
+            <Insets top="10.0" />
+         </BorderPane.margin>
+         <padding>
+            <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+         </padding>
+      </HBox>
+   </top>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox layoutX="30.0" layoutY="20.0" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label text="Names:" textFill="#025477" />
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <TextField fx:id="name" minHeight="26.0" minWidth="150.0" prefHeight="26.0" prefWidth="350.0" promptText="First Name(s)">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" right="20.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <TextField fx:id="lname" minHeight="26.0" minWidth="150.0" prefHeight="26.0" prefWidth="350.0" promptText="Last Name(s)" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <Label fx:id="lIncorrectName" text="Names cannot contain special characters or numbers" textFill="#ca0505" visible="false" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label text="Email:" textFill="#025477" />
+                        <TextField fx:id="email" minHeight="26.0" minWidth="150.0" prefHeight="26.0" prefWidth="350.0" promptText="yourEmail@domain.com">
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin></TextField>
+                     </children>
+                  </VBox>
+                  <Label fx:id="lIncorrectEmail" text="Incorrect Email" textFill="#ca0505" visible="false" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label text="Username:" textFill="#025477" />
+                        <TextField fx:id="username" minHeight="26.0" minWidth="150.0" prefHeight="26.0" prefWidth="350.0" promptText="LettersNumbers">
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </TextField>
+                     </children>
+                  </VBox>
+                  <Label fx:id="lIncorrectUsername" text="Username cannot contain special characters" textFill="#ca0505" visible="false" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label text="Password:" textFill="#025477" />
+                        <PasswordField fx:id="password" minHeight="26.0" minWidth="150.0" prefHeight="26.0" prefWidth="350.0" promptText="LettersNumbersSymbols" />
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" />
+                     </padding>
+                  </VBox>
+                  <Label fx:id="lIncorrectPassword" text="Incorrect. It must be a combination of 8 to 15 numbers or letters, without blank spaces." textFill="#ca0505" visible="false" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label text="Repeat Password:" textFill="#025477" />
+                        <PasswordField fx:id="rpassword" minHeight="26.0" minWidth="150.0" prefHeight="26.0" prefWidth="350.0" promptText="LettersNumbersSymbols">
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </PasswordField>
+                     </children>
+                  </VBox>
+                  <Label fx:id="lIncorrectPasswordR" text="Passwords don't match" textFill="#ca0505" visible="false" />
+               </children>
+            </HBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Profile Picture:" textFill="#025477" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#lookImage" text="Browse...">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Label fx:id="pictureName" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+         <BorderPane.margin>
+            <Insets top="10.0" />
+         </BorderPane.margin>
+         <padding>
+            <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+         </padding>
+      </VBox>
+   </center>
+   <bottom>
+      <HBox alignment="CENTER_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="35.0" prefWidth="560.0" spacing="25.0" BorderPane.alignment="CENTER_RIGHT">
+         <children>
+            <Button fx:id="accept" minWidth="80.0" mnemonicParsing="false" onAction="#AcceptOnAction" prefWidth="100.0" style="-fx-background-color: #0685bc;" text="Accept" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="90.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/accept_white.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="cancel" minWidth="80.0" mnemonicParsing="false" onAction="#CancelOnAction" prefWidth="100.0" style="-fx-background-color: #0685bc;" text="Cancel" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/cancel_white.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </BorderPane.margin>
+      </HBox>
+   </bottom>
+</BorderPane>
