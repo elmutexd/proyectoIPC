@@ -39,7 +39,7 @@ public class VistaController implements Initializable {
     private TextField usuarioField;
     @FXML
     private PasswordField passwordField;
-    private Acount acount;
+    /*private Acount acount;*/
      
     @FXML
     private Text errInicioSesion;
@@ -47,24 +47,30 @@ public class VistaController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb) {/*
         try {
             acount = acount.getInstance();
         } catch (AcountDAOException ex) {
             Logger.getLogger(VistaController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(VistaController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
     }    
 
     @FXML
     private void iniciarSesion(ActionEvent event) throws IOException, AcountDAOException {
         String nombre = usuarioField.getText();
         String password = passwordField.getText();
-        boolean isOK= acount.logInUserByCredentials(nombre,password);
+        boolean isOK= Acount.getInstance().logInUserByCredentials(nombre,password);
         if(isOK){
         //se inicia sesión
-        
+            FXMLLoader registro = new FXMLLoader(getClass().getResource("../Vista/Cuenta.fxml"));
+            Parent root = registro.load();
+            RegistroController controller = registro.getController();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.showAndWait();
         }
         else{
             //no se encuentra el usuario como registrado
