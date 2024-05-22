@@ -5,9 +5,11 @@
 package javafxmlapplication.Controlador;
 
 import java.io.IOException;
+import java.lang.StackWalker.Option;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
@@ -19,7 +21,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -28,6 +33,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Acount;
+import model.AcountDAOException;
 import model.Charge;
 /**
  * FXML Controller class
@@ -51,8 +58,6 @@ public class CuentaController implements Initializable {
     
     private ObservableList<Charge> datos=null;
     @FXML
-    private TableColumn<Charge, String> cImagen;
-    @FXML
     private Button borrarButton;
 
     /**
@@ -60,14 +65,20 @@ public class CuentaController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        iniModelo();
-        borrarButton.setDisable(true);
-        borrarButton.disableProperty().bind(Bindings.equal(-1, tabla.getSelectionModel().selectedIndexProperty()));
+        try{
+            iniModelo();
+            borrarButton.setDisable(true);
+            borrarButton.disableProperty().bind(Bindings.equal(-1, tabla.getSelectionModel().selectedIndexProperty()));
+        }
+        catch(Exception e){
+                    System.out.println("Error en initialize");
+                }
         
     }
-     private void iniModelo(){
-        ArrayList<Charge> misdatos= new ArrayList<>();
+     private void iniModelo() throws AcountDAOException, IOException{
+        ArrayList<Charge> misdatos= new ArrayList<>(Acount.getInstance().getUserCharges());
         datos = FXCollections.observableArrayList(misdatos);
+        
         tabla.setItems(datos);
         cGasto.setCellValueFactory(
                 (cargo)-> new SimpleStringProperty(cargo.getValue().getName()) );
@@ -78,13 +89,12 @@ public class CuentaController implements Initializable {
                 (cargo)-> new SimpleStringProperty(cargo.getValue().getDate().toString()) ); 
         cCoste.setCellValueFactory(
                 (cargo)-> new SimpleStringProperty((Double.toString(cargo.getValue().getCost())+"$")) );
-        cImagen.setCellValueFactory(new PropertyValueFactory<>("imageUrl"));
-        cImagen.setCellFactory(c-> new ImagenTabCell());
+        
     }
 
     @FXML
     private void añadir(ActionEvent event) throws IOException {
-        FXMLLoader loader= new FXMLLoader(getClass().getResource("/javafxmlapplication/Vista/añadirGasto.fxml"));
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("/javafxmlapplication/Vista/addGasto.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         Stage stage = new Stage();
@@ -99,8 +109,28 @@ public class CuentaController implements Initializable {
     }
 
     @FXML
-    private void salir(ActionEvent event) {
-        System.exit(0);
+    private void salir(ActionEvent event) throws IOException {
+        Alert alerta = new Alert(AlertType.CONFIRMATION);
+        alerta.setTitle("Cerrar Sesión");
+        alerta.setContentText("Está seguro que desea salir ?");
+        Optional <ButtonType> opciones = alerta.showAndWait();
+        if(opciones.isPresent() && opciones.get()==ButtonType.OK){
+            alerta.close();
+            Stage stage1 = (Stage) borrarButton.getScene().getWindow();
+            stage1.close();
+            FXMLLoader loader= new  FXMLLoader(getClass().getResource("../Vista/Vista.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("App Gastos");
+            stage.show();
+        }
+        else{
+            alerta.close();
+        }
+        
+        
     }
      class ImagenTabCell extends TableCell<Charge, String> {
             private ImageView view = new ImageView();
