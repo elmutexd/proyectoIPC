@@ -102,11 +102,15 @@ public class AddGastoController implements Initializable {
     }    
 
     @FXML
-    private void aceptar(ActionEvent event) {
+    private void aceptar(ActionEvent event) throws AcountDAOException, IOException {
         if(getNombre()!=null && getCoste()!=null && getDate()!=null && getDesc()!=null /*&& getCategory()!=null && getImage()!=null*/){
             datosV=true;
+            
             Stage stage1 = (Stage) buttonAceptar.getScene().getWindow();
             stage1.close();
+            System.out.println("aceptar ejecutado");
+            Acount.getInstance().registerCharge(getNombre(),getDesc(),Double.parseDouble(getCoste()),1,getImage(),getDate(),getCategory());
+            
             
         }
         else{

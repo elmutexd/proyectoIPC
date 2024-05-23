@@ -80,13 +80,13 @@ public class VistaListaControlador_1 implements Initializable {
 
     @FXML
     private void addAccion(ActionEvent event) throws IOException {
-        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/Controlador/VistaPersona.fxml"));
+        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/Controlador/VistaCat.fxml"));
         Parent root = miCargador.load();
         VistaCatController controladorPersona = miCargador.getController();
         Scene scene = new Scene(root,500,300);
         Stage stage = new Stage();
         stage.setScene(scene);
-        stage.setTitle("Vista datos persona");
+        stage.setTitle("Vista datos categoria");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
     }

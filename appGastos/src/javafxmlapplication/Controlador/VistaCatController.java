@@ -48,6 +48,7 @@ public class VistaCatController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         etiquetaError.setVisible(false);
+        
     }    
 
     @FXML
