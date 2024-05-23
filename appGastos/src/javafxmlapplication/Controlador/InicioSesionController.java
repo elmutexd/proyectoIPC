@@ -25,6 +25,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
@@ -63,6 +64,8 @@ public class InicioSesionController implements Initializable {
     boolean isOk;
     @FXML
     private Text txt_uNoRegistrado;
+    @FXML
+    private GridPane gridPane;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -88,6 +91,12 @@ public class InicioSesionController implements Initializable {
         if (mediaPlayer.getStatus() != MediaPlayer.Status.READY) {
             mediaPlayer.seek(Duration.ZERO);
         }
+        
+        
+         // Bind the size of the MediaView to the size of the AnchorPane
+        mediaView.fitWidthProperty().bind(gridPane.widthProperty());
+        mediaView.fitHeightProperty().bind(gridPane.heightProperty());
+        mediaView.setPreserveRatio(true);
     }
 
     
