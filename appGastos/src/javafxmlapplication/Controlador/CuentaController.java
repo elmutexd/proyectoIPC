@@ -25,6 +25,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -60,6 +61,12 @@ public class CuentaController implements Initializable {
     private Button borrarButton;
     @FXML
     private ImageView imagenCuenta;
+    @FXML
+    private Button modificarButton;
+    @FXML
+    private Button catButton;
+    @FXML
+    private MenuButton buttonMenu;
 
     /**
      * Initializes the controller class.
@@ -69,6 +76,8 @@ public class CuentaController implements Initializable {
         
         borrarButton.setDisable(true);
         borrarButton.disableProperty().bind(Bindings.equal(-1, tabla.getSelectionModel().selectedIndexProperty()));
+        modificarButton.setDisable(true);
+        modificarButton.disableProperty().bind(Bindings.equal(-1, tabla.getSelectionModel().selectedIndexProperty()));
         
         try{
             
@@ -76,6 +85,7 @@ public class CuentaController implements Initializable {
             imagenCuenta.setImage(Acount.getInstance().getLoggedUser().getImage());
             Circle clip = new Circle(30,30,30);
             imagenCuenta.setClip(clip);
+            buttonMenu.setClip(clip);
             
             
         }
@@ -89,6 +99,7 @@ public class CuentaController implements Initializable {
         datos = FXCollections.observableArrayList(misdatos);
         
         tabla.setItems(datos);
+        datos = tabla.getItems();
         cGasto.setCellValueFactory(
                 (cargo)-> new SimpleStringProperty(cargo.getValue().getName()) );
         
@@ -102,7 +113,7 @@ public class CuentaController implements Initializable {
     }
 
     @FXML
-    private void añadir(ActionEvent event) throws IOException {
+    private void añadir(ActionEvent event) throws IOException, AcountDAOException {
         FXMLLoader loader= new FXMLLoader(getClass().getResource("/javafxmlapplication/Vista/addGasto.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
@@ -111,6 +122,11 @@ public class CuentaController implements Initializable {
         stage.setTitle("App Gastos");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
+        AddGastoController add = loader.getController();
+        if(add.getDatosV()){
+            Acount.getInstance().registerCharge(add.getNombre(),add.getDesc(),Double.parseDouble(add.getCoste()),0,add.getImage(),add.getDate(),add.getCategory());
+
+        }
         
     }
 
@@ -157,6 +173,14 @@ public class CuentaController implements Initializable {
         }
         
         
+    }
+
+    @FXML
+    private void modificar(ActionEvent event) {
+    }
+
+    @FXML
+    private void verCategorias(ActionEvent event) {
     }
      class ImagenTabCell extends TableCell<Charge, String> {
             private ImageView view = new ImageView();
