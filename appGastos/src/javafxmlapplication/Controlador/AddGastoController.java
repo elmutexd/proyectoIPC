@@ -31,6 +31,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Acount;
@@ -54,7 +55,7 @@ public class AddGastoController implements Initializable {
     @FXML
     private ComboBox<Category> addCategoria;
     @FXML
-    private TextField textoImagen;
+    private Text textoImagen;
     @FXML
     private Button subirImagen;
     @FXML
@@ -176,4 +177,13 @@ public class AddGastoController implements Initializable {
             stage.show();
     }
     
+    @FXML
+    private void lookImage(ActionEvent event) {
+        FileChooser choose = new FileChooser();
+        File file = choose.showOpenDialog(new Stage());
+        if(file != null){
+            imagen = new Image(file.toURI().toString(),500,500,false,false); //hacer que todas las imagenes sean 500x500
+            textoImagen.setText(file.getName());
+        }
+    }
 }

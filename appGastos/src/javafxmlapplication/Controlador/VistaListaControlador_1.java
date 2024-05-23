@@ -21,6 +21,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -74,6 +75,7 @@ public class VistaListaControlador_1 implements Initializable {
         datos = FXCollections.observableArrayList(Acount.getInstance().getUserCategories());
         catListView.setItems(datos);
         datos = catListView.getItems();
+        catListView.setCellFactory(c -> new CatListCell());
     }
 
     @FXML
@@ -114,4 +116,19 @@ public class VistaListaControlador_1 implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
     }
+    
+    class CatListCell extends ListCell<Category> {
+
+    @Override
+    protected void updateItem(Category t, boolean bln) {
+        super.updateItem(t, bln); //To change body of generated methods, choose Tools | Templates.
+        if (bln) // esta vacia
+        {
+            setText("");
+        } else {
+            setText(t.getName() + ", " + t.getDescription());
+        }
+
+    }
+}
 }
