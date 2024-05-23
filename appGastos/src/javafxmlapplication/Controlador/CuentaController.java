@@ -31,6 +31,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Acount;
@@ -53,22 +54,30 @@ public class CuentaController implements Initializable {
     private TableColumn<Charge, String> cFecha;
     @FXML
     private TableColumn<Charge, String> cCoste;
-    @FXML
-    private TableColumn<Charge, String> cDesc;
     
     private ObservableList<Charge> datos=null;
     @FXML
     private Button borrarButton;
+    @FXML
+    private ImageView imagenCuenta;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        borrarButton.setDisable(true);
+        borrarButton.disableProperty().bind(Bindings.equal(-1, tabla.getSelectionModel().selectedIndexProperty()));
+        
         try{
+            
             iniModelo();
-            borrarButton.setDisable(true);
-            borrarButton.disableProperty().bind(Bindings.equal(-1, tabla.getSelectionModel().selectedIndexProperty()));
+            imagenCuenta.setImage(Acount.getInstance().getLoggedUser().getImage());
+            Circle clip = new Circle(30,30,30);
+            imagenCuenta.setClip(clip);
+            
+            
         }
         catch(Exception e){
                     System.out.println("Error en initialize");
@@ -102,10 +111,27 @@ public class CuentaController implements Initializable {
         stage.setTitle("App Gastos");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
+        
     }
 
     @FXML
     private void borrar(ActionEvent event) {
+        Alert alerta = new Alert(AlertType.CONFIRMATION);
+        alerta.setTitle("Borrar gasto");
+        alerta.setContentText("Está seguro que desea borrar el gasto seleccionado ?");
+        Optional <ButtonType> opciones = alerta.showAndWait();
+        if(opciones.isPresent() && opciones.get()==ButtonType.OK){
+            datos.remove(tabla.getSelectionModel().getSelectedIndex());
+
+            alerta.close();
+            
+        }
+        else{
+            alerta.close();
+        }
+        
+                
+                
     }
 
     @FXML

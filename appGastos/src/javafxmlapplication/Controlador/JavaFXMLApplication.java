@@ -16,7 +16,7 @@ public class JavaFXMLApplication extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader= new  FXMLLoader(getClass().getResource("../Vista/Vista.fxml"));
+        FXMLLoader loader= new  FXMLLoader(getClass().getResource("../Vista/Cuenta.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);
