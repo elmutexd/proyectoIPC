@@ -72,7 +72,7 @@ public class InicioSesionController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         showPass.textProperty().bindBidirectional(passField.textProperty());
         // Ruta del archivo de vídeo
-        String videoFile = "../videos/videoipc.webm";
+        /*String videoFile = "../videos/videoipc.webm";
         // Crear objeto Media
         media = new Media(new File(videoFile).toURI().toString());
         // Crear objeto MediaPlayer
@@ -83,7 +83,7 @@ public class InicioSesionController implements Initializable {
         mediaPlayer.play();
         if (mediaPlayer.getStatus() != MediaPlayer.Status.READY) {
             mediaPlayer.seek(Duration.ZERO);
-        }
+        }*/
     }
 
     

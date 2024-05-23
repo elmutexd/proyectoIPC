@@ -133,7 +133,7 @@ public class ChartController implements Initializable {
                 }
             }
         }
-        grafo.getData().addAll(series1,series2,series3,series4,series5,series6,series7,series8,series9,series104,series11,series12);
+        grafo.getData().addAll(series1,series2,series3,series4,series5,series6,series7,series8,series9,series10,series11,series12);
     }
 
     @FXML

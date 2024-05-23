@@ -18,14 +18,10 @@ public class JavaFXMLApplication extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-<<<<<<< HEAD
-        FXMLLoader loader= new  FXMLLoader(getClass().getResource("../Vista/Vista.fxml"));
-=======
         //======================================================================
         // 1- creación del grafo de escena a partir del fichero FXML
         FXMLLoader loader= new  FXMLLoader(getClass().getResource("../Vista/inicioSesion.fxml"));
         
->>>>>>> 669dc71a051ddd2d0582390d18cf506795d84251
         Parent root = loader.load();
         //======================================================================
         // 2- creación de la escena con el nodo raiz del grafo de escena
