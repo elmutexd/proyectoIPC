@@ -4,10 +4,6 @@
  */
 package javafxmlapplication.Controlador;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.Initializable;
-
 /**
  * FXML Controller class
  *
@@ -72,11 +68,9 @@ public class InicioSesionController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         showPass.textProperty().bindBidirectional(passField.textProperty());
         // Ruta del archivo de vídeo
-<<<<<<< HEAD
+
         String videoFile = "src/imagenes/videoDinero.mp4";
-=======
-        /*String videoFile = "../videos/videoipc.webm";
->>>>>>> 8a4413b4c862870382fdd3f1e988a6a649e3f862
+
         // Crear objeto Media
         media = new Media(new File(videoFile).toURI().toString());
         // Crear objeto MediaPlayer
@@ -91,13 +85,9 @@ public class InicioSesionController implements Initializable {
             });
 
         mediaPlayer.play();
-<<<<<<< HEAD
-        
-=======
         if (mediaPlayer.getStatus() != MediaPlayer.Status.READY) {
             mediaPlayer.seek(Duration.ZERO);
-        }*/
->>>>>>> 8a4413b4c862870382fdd3f1e988a6a649e3f862
+        }
     }
 
     
