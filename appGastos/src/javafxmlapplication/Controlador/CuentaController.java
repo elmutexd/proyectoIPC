@@ -5,6 +5,7 @@
 package javafxmlapplication.Controlador;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.lang.StackWalker.Option;
 import java.net.URL;
 import java.time.LocalDate;
@@ -38,6 +39,7 @@ import javafx.stage.Stage;
 import model.Acount;
 import model.AcountDAOException;
 import model.Charge;
+import model.User;
 /**
  * FXML Controller class
  *
@@ -193,6 +195,25 @@ public class CuentaController implements Initializable {
 
     @FXML
     private void verCategorias(ActionEvent event) {
+    }
+
+    @FXML
+    private void pdf(ActionEvent event) throws AcountDAOException, IOException {
+        User user = Acount.getInstance().getLoggedUser();
+        PrintWriter write = new PrintWriter(user.getNickName() + " - Cuenta MyMoney.pdf");
+        Charge[] cuenta = Acount.getInstance().getUserCharges().toArray(new Charge[0]);
+        write.println(user.getName() + " " + user.getSurname() + " (" + user.getNickName() + ")");
+        write.println("\n");
+        for(int i = 0; i < cuenta.length; i++){
+            write.println(cuenta[i].getDate() + " - " + cuenta[i].getName() + ", " + 
+                    cuenta[i].getCost() + ", " + cuenta[i].getCategory() + ", " + 
+                    cuenta[i].getDescription() + ", " + cuenta[i].getId());
+        }
+        write.close();
+    }
+
+    @FXML
+    private void detalles(ActionEvent event) {
     }
      class ImagenTabCell extends TableCell<Charge, String> {
             private ImageView view = new ImageView();
