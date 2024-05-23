@@ -72,7 +72,7 @@ public class InicioSesionController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         showPass.textProperty().bindBidirectional(passField.textProperty());
         // Ruta del archivo de vídeo
-        String videoFile = "C:\\Users\\coozy\\Desktop\\ProyectoIPC\\PROYECTOGIT\\proyectoIPC\\appGastos\\src\\imagenes\\videoDinero.mp4";
+        String videoFile = "C:\\Users\\coozy\\Desktop\\CODIGO\\JAVAFX\\plantilla\\MyMoney\\src\\imagenes\\videoDinero.mp4";
         // Crear objeto Media
         media = new Media(new File(videoFile).toURI().toString());
         // Crear objeto MediaPlayer
