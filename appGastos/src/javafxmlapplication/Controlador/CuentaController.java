@@ -5,6 +5,7 @@
 package javafxmlapplication.Controlador;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.lang.StackWalker.Option;
 import java.net.URL;
 import java.time.LocalDate;
@@ -38,6 +39,7 @@ import javafx.stage.Stage;
 import model.Acount;
 import model.AcountDAOException;
 import model.Charge;
+import model.User;
 /**
  * FXML Controller class
  *
@@ -206,6 +208,7 @@ public class CuentaController implements Initializable {
     }
 
     @FXML
+<<<<<<< HEAD
     private void detalles(ActionEvent event) throws IOException {
         FXMLLoader loader= new FXMLLoader(getClass().getResource("/javafxmlapplication/Vista/detalles.fxml"));
         Parent root = loader.load();
@@ -216,6 +219,27 @@ public class CuentaController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
         
+=======
+<<<<<<< HEAD
+    private void pdf(ActionEvent event) throws AcountDAOException, IOException {
+        User user = Acount.getInstance().getLoggedUser();
+        PrintWriter write = new PrintWriter(user.getNickName() + " - Cuenta MyMoney.pdf");
+        Charge[] cuenta = Acount.getInstance().getUserCharges().toArray(new Charge[0]);
+        write.println(user.getName() + " " + user.getSurname() + " (" + user.getNickName() + ")");
+        write.println("\n");
+        for(int i = 0; i < cuenta.length; i++){
+            write.println(cuenta[i].getDate() + " - " + cuenta[i].getName() + ", " + 
+                    cuenta[i].getCost() + ", " + cuenta[i].getCategory() + ", " + 
+                    cuenta[i].getDescription() + ", " + cuenta[i].getId());
+        }
+        write.close();
+    }
+
+    @FXML
+=======
+>>>>>>> 3c3135715ff7bb5daa5e1ed1407c02e41d1c861a
+    private void detalles(ActionEvent event) {
+>>>>>>> f8c8f677fddb356fb4f9ea86e326aa55f8a70e86
     }
 
     
