@@ -28,8 +28,10 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.ComboBoxListCell;
 import javafx.scene.image.Image;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -81,6 +83,9 @@ public class AddGastoController implements Initializable {
                 }
             }
         });
+        addCategoria.setCellFactory(c -> new catBoxListCell());
+        addCategoria.setButtonCell(new catButtCell());
+        
         errorAceptar.setVisible(false);
         addFecha.setDayCellFactory((DatePicker picker) -> {
             return new DateCell() {
@@ -184,7 +189,6 @@ public class AddGastoController implements Initializable {
             addCategoria.setItems(observableList);
     }
     
-    @FXML
     private void lookImage(ActionEvent event) {
         FileChooser choose = new FileChooser();
         File file = choose.showOpenDialog(new Stage());
@@ -193,4 +197,22 @@ public class AddGastoController implements Initializable {
             textoImagen.setText(file.getName());
         }
     }
+
+    class catBoxListCell extends ComboBoxListCell<Category>{
+        @Override
+        public void updateItem(Category t, boolean bln) {
+            super.updateItem(t, bln); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+            if(t == null || bln){setText(null);}
+            else{setText(t.getName());}
+        }
+    }
+    
+    class catButtCell extends ListCell<Category>{
+        @Override
+        protected void updateItem(Category t, boolean bln) {
+            super.updateItem(t, bln); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+            if(t == null || bln){setText(null);}
+            else{setText(t.getName());}
+        }
+    }  
 }
