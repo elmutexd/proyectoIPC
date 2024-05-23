@@ -3,8 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/julil/Documents/Uni/2º/IPC/proyectoIPC/appGastos/src/javafxmlapplication/Vista/Chart.fxml</file>
             <file>file:/C:/Users/julil/Documents/Uni/2º/IPC/proyectoIPC/appGastos/src/javafxmlapplication/Controlador/ChartController.java</file>
+=======
+            <file>file:/C:/Users/Gabriel/Desktop/ipc/proyectoIPC/appGastos/src/javafxmlapplication/Controlador/VistaListaControlador_1.java</file>
+            <file>file:/C:/Users/Gabriel/Desktop/ipc/proyectoIPC/appGastos/src/javafxmlapplication/Controlador/RegistrooController.java</file>
+            <file>file:/C:/Users/Gabriel/Desktop/ipc/proyectoIPC/appGastos/src/javafxmlapplication/Controlador/VistaCatController.java</file>
+            <file>file:/C:/Users/Gabriel/Desktop/ipc/proyectoIPC/appGastos/src/javafxmlapplication/Controlador/DetallesController.java</file>
+            <file>file:/C:/Users/Gabriel/Desktop/ipc/proyectoIPC/appGastos/src/javafxmlapplication/Controlador/AddGastoController.java</file>
+            <file>file:/C:/Users/Gabriel/Desktop/ipc/proyectoIPC/appGastos/src/javafxmlapplication/Controlador/InicioSesionController.java</file>
+            <file>file:/C:/Users/Gabriel/Desktop/ipc/proyectoIPC/appGastos/src/javafxmlapplication/Controlador/JavaFXMLApplication.java</file>
+            <file>file:/C:/Users/Gabriel/Desktop/ipc/proyectoIPC/appGastos/src/javafxmlapplication/Controlador/CuentaController.java</file>
+>>>>>>> 669dc71a051ddd2d0582390d18cf506795d84251
         </group>
     </open-files>
 </project-private>

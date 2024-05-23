@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.Acount;
 import model.AcountDAOException;
@@ -25,17 +26,20 @@ public class VistaCatController implements Initializable {
 
     @FXML
     private TextField nombreTextField;
+    @FXML
     private TextField descTextField;
     
     private Category cat;
     
     private boolean edit = false;
+    @FXML
+    private Label etiquetaError;
     
     public void initCat(Category p){
         cat = p;
         nombreTextField.setText(p.getName());
         descTextField.setText(p.getDescription());
-        edit = true;
+        
     }
 
     /**
@@ -43,19 +47,19 @@ public class VistaCatController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //TODO
+        etiquetaError.setVisible(false);
     }    
 
     @FXML
     private void aceptar(ActionEvent event) throws AcountDAOException, IOException {
-        if(edit = true){
-            cat.setName(nombreTextField.getText());
-            cat.setDescription(descTextField.getText());
+        if(nombreTextField.getText()!=null && descTextField.getText()!=null){
+            Acount.getInstance().registerCategory(nombreTextField.getText(),descTextField.getText());
+            nombreTextField.getScene().getWindow().hide();
         }
         else{
-            Acount.getInstance().registerCategory(nombreTextField.getText(),descTextField.getText());
+            etiquetaError.setVisible(true);
+
         }
-        nombreTextField.getScene().getWindow().hide();
     }
 
     @FXML
