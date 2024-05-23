@@ -2,6 +2,7 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group>
             <file>file:/C:/Users/Gabriel/Desktop/ipc/proyectoIPC/appGastos/src/javafxmlapplication/Controlador/VistaListaControlador_1.java</file>
             <file>file:/C:/Users/Gabriel/Desktop/ipc/proyectoIPC/appGastos/src/javafxmlapplication/Controlador/VistaCatController.java</file>
@@ -9,5 +10,8 @@
             <file>file:/C:/Users/Gabriel/Desktop/ipc/proyectoIPC/appGastos/src/javafxmlapplication/Controlador/AddGastoController.java</file>
             <file>file:/C:/Users/Gabriel/Desktop/ipc/proyectoIPC/appGastos/src/javafxmlapplication/Controlador/CuentaController.java</file>
         </group>
+=======
+        <group/>
+>>>>>>> 86d9d4b900c42a09c364918a4534c99bf409f103
     </open-files>
 </project-private>
