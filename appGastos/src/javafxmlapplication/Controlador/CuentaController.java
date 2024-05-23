@@ -208,7 +208,6 @@ public class CuentaController implements Initializable {
     }
 
     @FXML
-<<<<<<< HEAD
     private void detalles(ActionEvent event) throws IOException {
         FXMLLoader loader= new FXMLLoader(getClass().getResource("/javafxmlapplication/Vista/detalles.fxml"));
         Parent root = loader.load();
@@ -218,10 +217,10 @@ public class CuentaController implements Initializable {
         stage.setTitle("App Gastos");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
+    }
         
-=======
-<<<<<<< HEAD
-    private void pdf(ActionEvent event) throws AcountDAOException, IOException {
+
+  /*  private void pdf(ActionEvent event) throws AcountDAOException, IOException {
         User user = Acount.getInstance().getLoggedUser();
         PrintWriter write = new PrintWriter(user.getNickName() + " - Cuenta MyMoney.pdf");
         Charge[] cuenta = Acount.getInstance().getUserCharges().toArray(new Charge[0]);
@@ -233,14 +232,12 @@ public class CuentaController implements Initializable {
                     cuenta[i].getDescription() + ", " + cuenta[i].getId());
         }
         write.close();
-    }
+    }*/
 
     @FXML
-=======
->>>>>>> 3c3135715ff7bb5daa5e1ed1407c02e41d1c861a
-    private void detalles(ActionEvent event) {
->>>>>>> f8c8f677fddb356fb4f9ea86e326aa55f8a70e86
+    private void pdf(ActionEvent event) {
     }
+
 
     
     
@@ -259,6 +256,6 @@ public class CuentaController implements Initializable {
                 setGraphic(view);
             }
         }
-}
+    }
      
 }
