@@ -35,6 +35,7 @@ import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Acount;
+import model.AcountDAOException;
 import model.Category;
 
 /**
@@ -167,7 +168,7 @@ public class AddGastoController implements Initializable {
     }
 
     @FXML
-    private void crarCat(ActionEvent event) throws IOException {
+    private void crarCat(ActionEvent event) throws IOException, AcountDAOException {
             FXMLLoader loader= new  FXMLLoader(getClass().getResource("../Vista/VistaCat.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
@@ -175,6 +176,8 @@ public class AddGastoController implements Initializable {
             stage.setScene(scene);
             stage.setTitle("Crear Categoría");
             stage.show();
+            ObservableList<Category> observableList = FXCollections.observableList(Acount.getInstance().getUserCategories());
+            addCategoria.setItems(observableList);
     }
     
     @FXML

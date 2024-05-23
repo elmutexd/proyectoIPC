@@ -176,7 +176,19 @@ public class CuentaController implements Initializable {
     }
 
     @FXML
-    private void modificar(ActionEvent event) {
+    private void modificar(ActionEvent event) throws IOException {
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("/javafxmlapplication/Vista/addGasto.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("App Gastos");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
+        
+    }
+    public Charge gastoSeleccionado(){
+        return tabla.getSelectionModel().getSelectedItem();
     }
 
     @FXML
