@@ -21,9 +21,13 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import model.Acount;
 import model.AcountDAOException;
 import model.User;
@@ -73,7 +77,10 @@ public class RegistrooController implements Initializable {
     @FXML
     private Text errCorreo;
     
-    
+    private Media media;
+    private MediaPlayer mediaPlayer;
+    @FXML
+    private MediaView mediaView;
     /**
      * Initializes the controller class.
      */
@@ -81,6 +88,23 @@ public class RegistrooController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         iniFoto(null);
         // TODO
+        
+        // Ruta del archivo de vídeo
+        String videoFile = "src/imagenes/videoDinero.mp4";
+        // Crear objeto Media
+        media = new Media(new File(videoFile).toURI().toString());
+        // Crear objeto MediaPlayer
+        mediaPlayer = new MediaPlayer(media);
+        // Asociar MediaPlayer al MediaView
+        mediaView.setMediaPlayer(mediaPlayer);
+        // Reproducir el vídeo
+        // Agregar listener para reiniciar el video al finalizar
+            mediaPlayer.setOnEndOfMedia(() -> {
+                mediaPlayer.seek(Duration.ZERO);
+                mediaPlayer.play();
+            });
+
+        mediaPlayer.play();
        
     }    
     

@@ -72,7 +72,7 @@ public class InicioSesionController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         showPass.textProperty().bindBidirectional(passField.textProperty());
         // Ruta del archivo de vídeo
-        String videoFile = "C:\\Users\\coozy\\Desktop\\CODIGO\\JAVAFX\\plantilla\\MyMoney\\src\\imagenes\\videoDinero.mp4";
+        String videoFile = "src/imagenes/videoDinero.mp4";
         // Crear objeto Media
         media = new Media(new File(videoFile).toURI().toString());
         // Crear objeto MediaPlayer
@@ -80,10 +80,14 @@ public class InicioSesionController implements Initializable {
         // Asociar MediaPlayer al MediaView
         mediaView.setMediaPlayer(mediaPlayer);
         // Reproducir el vídeo
+        // Agregar listener para reiniciar el video al finalizar
+            mediaPlayer.setOnEndOfMedia(() -> {
+                mediaPlayer.seek(Duration.ZERO);
+                mediaPlayer.play();
+            });
+
         mediaPlayer.play();
-        if (mediaPlayer.getStatus() != MediaPlayer.Status.READY) {
-            mediaPlayer.seek(Duration.ZERO);
-        }
+        
     }
 
     
