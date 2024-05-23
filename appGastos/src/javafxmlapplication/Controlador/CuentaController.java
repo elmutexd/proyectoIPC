@@ -85,14 +85,14 @@ public class CuentaController implements Initializable {
             
             iniModelo();
             imagenCuenta.setImage(Acount.getInstance().getLoggedUser().getImage());
-            Circle clip = new Circle(30,30,30);
-            imagenCuenta.setClip(clip);
-            buttonMenu.setClip(clip);
+            //Circle clip = new Circle(30,30,30);
+            //imagenCuenta.setClip(clip);
+            //buttonMenu.setClip(clip);
             
             
         }
         catch(Exception e){
-                    System.out.println("Error en initialize");
+                    System.out.println("Error en initialize"+ e.getMessage());
                 }
         
     }
@@ -126,8 +126,9 @@ public class CuentaController implements Initializable {
         stage.show();
         AddGastoController add = loader.getController();
         if(add.getDatosV()){
-            Acount.getInstance().registerCharge(add.getNombre(),add.getDesc(),Double.parseDouble(add.getCoste()),0,add.getImage(),add.getDate(),add.getCategory());
-
+            Charge cargo = new Charge(add.getNombre(),add.getDesc(),Double.parseDouble(add.getCoste()),1,add.getImage(),add.getDate(),add.getCategory());
+            Acount.getInstance().registerCharge(add.getNombre(),add.getDesc(),Double.parseDouble(add.getCoste()),1,add.getImage(),add.getDate(),add.getCategory());
+            datos.add(cargo);
         }
         
     }
@@ -198,6 +199,7 @@ public class CuentaController implements Initializable {
     }
 
     @FXML
+<<<<<<< HEAD
     private void pdf(ActionEvent event) throws AcountDAOException, IOException {
         User user = Acount.getInstance().getLoggedUser();
         PrintWriter write = new PrintWriter(user.getNickName() + " - Cuenta MyMoney.pdf");
@@ -213,6 +215,8 @@ public class CuentaController implements Initializable {
     }
 
     @FXML
+=======
+>>>>>>> 3c3135715ff7bb5daa5e1ed1407c02e41d1c861a
     private void detalles(ActionEvent event) {
     }
      class ImagenTabCell extends TableCell<Charge, String> {
