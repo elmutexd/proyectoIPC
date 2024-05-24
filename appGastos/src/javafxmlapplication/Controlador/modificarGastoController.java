@@ -75,11 +75,13 @@ public class modificarGastoController implements Initializable {
      */
     
     public void setCosas(Charge c){
+        addCategoria.setButtonCell(new modificarGastoController.catButtCell());
         gasto=c;
         addNombre.setText(gasto.getName());
         addFecha.setValue(gasto.getDate());
         addDesc.setText(gasto.getDescription());
         addCategoria.setValue(gasto.getCategory());
+        addCategoria.setPromptText(gasto.getCategory().getName());
         textoImagen.setText(gasto.getImageScan().toString());
         imagen = gasto.getImageScan();
         addCoste.setText(Double.toString(gasto.getCost()));

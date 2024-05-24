@@ -9,6 +9,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -81,6 +85,12 @@ public class RegistrooController implements Initializable {
     private MediaPlayer mediaPlayer;
     @FXML
     private MediaView mediaView;
+    
+    private BooleanProperty userB;
+    private BooleanProperty contraB;
+    private BooleanProperty correoB;
+    private BooleanProperty contraIgualesB;
+    
     /**
      * Initializes the controller class.
      */
@@ -88,6 +98,18 @@ public class RegistrooController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         iniFoto(null);
         // TODO
+        userB = contraB = correoB = contraIgualesB = new SimpleBooleanProperty();
+        userB.setValue(Boolean.FALSE); correoB.setValue(Boolean.FALSE); contraB.setValue(Boolean.FALSE); contraIgualesB.setValue(Boolean.FALSE);
+        txtNickname.focusedProperty().addListener((ob,oldV,newV)->{if(!newV){try {
+            checkNick();
+            } catch (AcountDAOException ex) {
+                Logger.getLogger(RegistrooController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(RegistrooController.class.getName()).log(Level.SEVERE, null, ex);
+            }}});
+        txtPassword.focusedProperty().addListener((ob,oldV,newV)->{if(!newV){checkPassword();}});
+        txtRepPass.focusedProperty().addListener((ob,oldV,newV)->{if(!newV){checkPass2();}});
+        txtCorreo.focusedProperty().addListener((ob,oldV,newV)->{if(!newV){checkEmail();}});
         
         // Ruta del archivo de vídeo
         String videoFile = "src/imagenes/videoDinero.mp4";
@@ -155,42 +177,41 @@ public class RegistrooController implements Initializable {
         return true;
     }
     
-    private boolean nickSinEspacios(String nickname){
-    if(nickname.contains(" ")){
-            showErrorMessage(errNickname, txtNickname);
-            return false;
+    private void checkNick() throws AcountDAOException, IOException{
+        if(!User.checkNickName(txtNickname.getText())){
+            errUsuarioyaRegistrado.visibleProperty().set(false);
+            manageError(errNickname,txtNickname,userB);
+        }else if(Acount.getInstance().existsLogin(txtNickname.getText())){
+            errNickname.visibleProperty().set(false);
+            manageError(errUsuarioyaRegistrado,txtNickname,userB);
+        }else{
+            manageCorrect(errUsuarioyaRegistrado,txtNickname,userB);
+            manageCorrect(errNickname,txtNickname,userB);
         }
-        hideErrorMessage(errNickname, txtNickname);
-        return true;
     }
-    
-    private boolean userNotInUse(String nickname) throws AcountDAOException, IOException{
-        if(Acount.getInstance().existsLogin(nickname)){
-        showErrorMessage(errUsuarioyaRegistrado, txtNickname);
-        return false;
+    private void checkPassword(){
+        if(!User.checkPassword(txtPassword.getText())){
+            manageError(errPassword,txtPassword,contraB);
+        }else{
+            manageCorrect(errPassword,txtPassword,contraB);
         }
-        hideErrorMessage(errUsuarioyaRegistrado, txtNickname);
-        return true;
     }
-    private boolean isPasswordCorrect(String password){
-    if(password.length()<=6){
-            showErrorMessage(errPassword,txtPassword);
-            return false;
+    private void checkPass2(){
+        if(!txtPassword.getText().equals(txtRepPass.getText())){
+            manageError(errPassword2,txtRepPass,contraIgualesB);
+        }else{
+            manageCorrect(errPassword2,txtRepPass,contraIgualesB);
         }
-    hideErrorMessage(errPassword, txtPassword);
-    return true;
     }
-    private boolean passwordsMatch(String password, String password2){
-        if(!password.equals(password2)){
-            errPassword2.visibleProperty().set(true);
-            txtPassword.styleProperty().setValue("-fx-background-color: #FF8B8B");  
-            txtRepPass.styleProperty().setValue("-fx-background-color: #FF8B8B");  
-            return false;
+    private void checkEmail(){
+        if(!User.checkEmail(txtCorreo.getText())){
+            manageError(errCorreo,txtCorreo,correoB);
+        }else{
+            manageCorrect(errCorreo,txtCorreo,correoB);
         }
-        errPassword2.visibleProperty().set(false);
-            txtPassword.styleProperty().setValue("");  
-            txtRepPass.styleProperty().setValue(""); 
-       return true;
+    }
+    private boolean passwordsMatch(){
+        return txtPassword.getText().equals(txtRepPass.getText());
     }
     
     private void showErrorMessage(Text errorText,TextField textField)
@@ -227,51 +248,29 @@ public class RegistrooController implements Initializable {
         //Image fotoPerfil = new Image("C:\\Users\\coozy\\Desktop\\CODIGO\\JAVAFX\\plantilla\\MyMoney\\src\\imagenes\\user.png");
         
         //PARA DAR UN ORDEN DE VERIFICACIÓN
-        if(sinCamposVacios( nombre, apellido, nickname, password,password2, correo)){
-        /*    if(nickSinEspacios(nickname)){
-                userNotInUse(nickname);
-            
-            
+        if(sinCamposVacios( nombre, apellido, nickname, password, password2, correo)){
+            if(!User.checkEmail(correo)){
+                showErrorMessage(errCorreo,txtCorreo);
+                bemail = false;
             }
-            if(User.checkPassword(password)){
-                passwordsMatch(password,password2);
+            if(!User.checkPassword(password)){
+                showErrorMessage(errPassword,txtPassword);
+                bpassword = false;
+            }else{bpassword = passwordsMatch();}
+
+            if(!User.checkNickName(nickname)){
+                showErrorMessage(errNickname,txtNickname);
+                bnickname = false;
+            }else if(Acount.getInstance().existsLogin(nickname)){
+              showErrorMessage(errUsuarioyaRegistrado,txtNickname);
+              bnickname = false;
             }
-        } if(!nickname.isEmpty()){
-            if(nickSinEspacios(nickname)){userNotInUse(nickname);}
-        }
-        if(!password.isEmpty()){
-            if(isPasswordCorrect(password)){passwordsMatch(password,password2);}
-        }
-        
-        //REGISTRAR
-        if(sinCampVac &&nickSinEsp &&uNotInUse &&passCorrect &&passMatch){
-            usuarioAdded.setVisible(true);*/
-        if(!User.checkEmail(correo)){
-            showErrorMessage(errCorreo,txtCorreo);
-            bemail = false;
-        }
-        if(!User.checkPassword(password)){
-            showErrorMessage(errPassword,txtPassword);
-            bpassword = false;
-        }else{bpassword = passwordsMatch(password,password2);}
-            
-        if(!User.checkNickName(nickname)){
-            showErrorMessage(errNickname,txtNickname);
-            bnickname = false;
-        }else if(Acount.getInstance().existsLogin(nickname)){
-          showErrorMessage(errUsuarioyaRegistrado,txtNickname);
-          bnickname = false;
-        }
-        
-        if(bemail && bpassword && bnickname){
-            Acount.getInstance().registerUser(nombre,apellido,correo,nickname,password,pfp,fecha);
-            usuarioAdded.setVisible(true);
-        }
-            
-        
-        }
-        
-        
+
+            if(bemail && bpassword && bnickname){
+                Acount.getInstance().registerUser(nombre,apellido,correo,nickname,password,pfp,fecha);
+                usuarioAdded.setVisible(true);
+            }
+        }   
     }
 
     @FXML
@@ -294,5 +293,14 @@ public class RegistrooController implements Initializable {
         rutafoto.setText("");
     }
     
+    private void manageError(Text errorLabel,TextField textField, BooleanProperty boolProp ){
+        boolProp.setValue(Boolean.FALSE);
+        showErrorMessage(errorLabel,textField);
+    }
 
+    private void manageCorrect(Text errorLabel,TextField textField, BooleanProperty boolProp ){
+        boolProp.setValue(Boolean.TRUE);
+        hideErrorMessage(errorLabel,textField);
+        
+    }
 }
