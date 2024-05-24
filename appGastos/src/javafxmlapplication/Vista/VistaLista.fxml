@@ -20,7 +20,7 @@
       </VBox>
    </right>
    <center>
-      <ListView fx:id="personasListView" maxWidth="1.7976931348623157E308" prefHeight="200.0" style="-fx-background-color: lavender;" BorderPane.alignment="CENTER">
+      <ListView fx:id="catListView" maxWidth="1.7976931348623157E308" prefHeight="200.0" style="-fx-background-color: lavender;" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="30.0" left="30.0" top="12.0" />
          </BorderPane.margin></ListView>

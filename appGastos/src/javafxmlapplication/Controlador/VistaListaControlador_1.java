@@ -79,8 +79,8 @@ public class VistaListaControlador_1 implements Initializable {
     }
 
     @FXML
-    private void addAccion(ActionEvent event) throws IOException {
-        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/Controlador/VistaCat.fxml"));
+    private void addAccion(ActionEvent event) throws IOException, AcountDAOException {
+        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("../Vista/VistaCat.fxml"));
         Parent root = miCargador.load();
         VistaCatController controladorPersona = miCargador.getController();
         Scene scene = new Scene(root,500,300);
@@ -89,6 +89,7 @@ public class VistaListaControlador_1 implements Initializable {
         stage.setTitle("Vista datos categoria");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
+        iniLista();
     }
 
     @FXML
@@ -103,7 +104,7 @@ public class VistaListaControlador_1 implements Initializable {
 
     @FXML
     private void modAccion(ActionEvent event) throws AcountDAOException, IOException{
-        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/Controlador/VistaPersona.fxml"));
+        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("../Vista/VistaCat.fxml"));
         Parent root = miCargador.load();
         VistaCatController controladorPersona = miCargador.getController();
         int aEditar = catListView.getSelectionModel().getSelectedIndex();
