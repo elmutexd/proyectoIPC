@@ -29,17 +29,14 @@ public class VistaCatController implements Initializable {
     @FXML
     private TextField descTextField;
     
-    private Category cat;
-    
     private boolean edit = false;
     @FXML
     private Label etiquetaError;
     
     public void initCat(Category p){
-        cat = p;
         nombreTextField.setText(p.getName());
         descTextField.setText(p.getDescription());
-        
+        edit = true;
     }
 
     /**
@@ -54,8 +51,12 @@ public class VistaCatController implements Initializable {
     @FXML
     private void aceptar(ActionEvent event) throws AcountDAOException, IOException {
         if(nombreTextField.getText()!=null && descTextField.getText()!=null){
-            Acount.getInstance().registerCategory(nombreTextField.getText(),descTextField.getText());
-            nombreTextField.getScene().getWindow().hide();
+            if(!edit){
+                Acount.getInstance().registerCategory(nombreTextField.getText(),descTextField.getText());
+                nombreTextField.getScene().getWindow().hide();
+            }else{
+                nombreTextField.getScene().getWindow().hide();
+            }
         }
         else{
             etiquetaError.setVisible(true);
@@ -66,5 +67,13 @@ public class VistaCatController implements Initializable {
     @FXML
     private void cancelar(ActionEvent event) {
         nombreTextField.getScene().getWindow().hide();
+    }
+    
+    public String Nombre(){
+        return nombreTextField.getText();
+    }
+    
+    public String Descripcion(){
+        return descTextField.getText();
     }
 }

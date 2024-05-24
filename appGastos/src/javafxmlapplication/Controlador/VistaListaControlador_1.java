@@ -116,6 +116,9 @@ public class VistaListaControlador_1 implements Initializable {
         stage.setTitle("Vista datos persona");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
+        catEditar.setName(controladorPersona.Nombre());
+        catEditar.setDescription(controladorPersona.Descripcion());
+        iniLista();
     }
     
     class CatListCell extends ListCell<Category> {
