@@ -95,6 +95,10 @@ public class modificarGastoController implements Initializable {
                 }
             }
         });
+        
+        addCategoria.setCellFactory(c -> new modificarGastoController.catBoxListCell());
+        addCategoria.setButtonCell(new modificarGastoController.catButtCell());
+        
         errorAceptar.setVisible(false);
         addFecha.setDayCellFactory((DatePicker picker) -> {
             return new DateCell() {
