@@ -71,16 +71,21 @@ public class modificarGastoController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Vista/modificarGasto.fxml"));
-        CuentaController cuenta = loader.getController();
-        gasto= cuenta.gastoSeleccionado();
+    
+    public void setCosas(Charge c){
+        gasto=c;
         addNombre.setText(gasto.getName());
         addFecha.setValue(gasto.getDate());
         addDesc.setText(gasto.getDescription());
         addCategoria.setValue(gasto.getCategory());
         textoImagen.setText(gasto.getImageScan().toString());
+        imagen = gasto.getImageScan();
+        addCoste.setText(Double.toString(gasto.getCost()));
+    
+    }
+    public void initialize(URL url, ResourceBundle rb) {
+       
+        
         addCoste.textProperty().addListener(new ChangeListener<String>() {
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 if (!newValue.matches("\\d*")) {
@@ -133,12 +138,17 @@ public class modificarGastoController implements Initializable {
     }
 
     @FXML
-    private void aceptar(ActionEvent event) {
+    private void aceptar(ActionEvent event) throws AcountDAOException, IOException {
         if(getNombre()!=null && getCoste()!=null && getDate()!=null && getDesc()!=null /*&& getCategory()!=null && getImage()!=null*/){
             datosV=true;
             Stage stage1 = (Stage) buttonAceptar.getScene().getWindow();
             stage1.close();
-            
+            gasto.setCategory(addCategoria.getValue());
+            gasto.setCost(Double.parseDouble(addCoste.getText()));
+            gasto.setDate(addFecha.getValue());
+            gasto.setDescription(addDesc.getText());
+            gasto.setImageScan(imagen);
+            gasto.setName(addNombre.getText());
         }
         else{
             errorAceptar.setVisible(true);

@@ -39,6 +39,7 @@ import javafx.stage.Stage;
 import model.Acount;
 import model.AcountDAOException;
 import model.Category;
+import model.Charge;
 
 /**
  * FXML Controller class
@@ -68,7 +69,6 @@ public class AddGastoController implements Initializable {
     Image imagen;
     @FXML
     private Label errorAceptar;
-    
     /**
      * Initializes the controller class.
      */
@@ -114,8 +114,6 @@ public class AddGastoController implements Initializable {
             Stage stage1 = (Stage) buttonAceptar.getScene().getWindow();
             stage1.close();
             System.out.println("aceptar ejecutado");
-            Acount.getInstance().registerCharge(getNombre(),getDesc(),Double.parseDouble(getCoste()),1,getImage(),getDate(),getCategory());
-            
             
         }
         else{
@@ -145,7 +143,6 @@ public class AddGastoController implements Initializable {
     public boolean getDatosV(){
         return datosV;
     }
-    
     @FXML
     private void cancelar(ActionEvent event) {
        

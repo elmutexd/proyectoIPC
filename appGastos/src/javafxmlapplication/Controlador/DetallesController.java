@@ -40,11 +40,7 @@ public class DetallesController implements Initializable {
             FXMLLoader loader= new FXMLLoader(getClass().getResource("/javafxmlapplication/Vista/detalles.fxml"));
             CuentaController cuenta = loader.getController();
             nombre.setText(cuenta.gastoSeleccionado().getName());
-            descripcion.setText(cuenta.gastoSeleccionado().getDescription());
-            categoria.setText(cuenta.gastoSeleccionado().getCategory().toString());
-            coste.setText(Double.toString(cuenta.gastoSeleccionado().getCost()));
-            fecha.setText(cuenta.gastoSeleccionado().getDate().toString());
-            imagen.setImage(cuenta.gastoSeleccionado().getImageScan());
+            
             
             
             

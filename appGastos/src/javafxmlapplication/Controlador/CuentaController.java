@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.StackWalker.Option;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -17,6 +16,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -69,7 +69,9 @@ public class CuentaController implements Initializable {
     private Button catButton;
     @FXML
     private MenuButton buttonMenu;
+    @FXML
     private Button buttonDetalles;
+    private Charge gasto;
 
     /**
      * Initializes the controller class.
@@ -81,8 +83,8 @@ public class CuentaController implements Initializable {
         borrarButton.disableProperty().bind(Bindings.equal(-1, tabla.getSelectionModel().selectedIndexProperty()));
         modificarButton.setDisable(true);
         modificarButton.disableProperty().bind(Bindings.equal(-1, tabla.getSelectionModel().selectedIndexProperty()));
-        //buttonDetalles.setDisable(true);
-        //buttonDetalles.disableProperty().bind(Bindings.equal(-1, tabla.getSelectionModel().selectedIndexProperty()));
+        buttonDetalles.setDisable(true);
+        buttonDetalles.disableProperty().bind(Bindings.equal(-1, tabla.getSelectionModel().selectedIndexProperty()));
         cGasto.setCellValueFactory(
                 (cargo)-> new SimpleStringProperty(cargo.getValue().getName()) );
         
@@ -124,8 +126,13 @@ public class CuentaController implements Initializable {
         stage.setScene(scene);
         stage.setTitle("App Gastos");
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.show();      
+        AddGastoController controlador = loader.getController();
 
+        stage.showAndWait();
+        if(controlador.getDatosV()){
+            Acount.getInstance().registerCharge(controlador.getNombre(),controlador.getDesc(),Double.parseDouble(controlador.getCoste()),1,controlador.getImage(),controlador.getDate(),controlador.getCategory());
+            datos.add(Acount.getInstance().getUserCharges().get(datos.size()));
+        }
             
             
 
@@ -134,12 +141,13 @@ public class CuentaController implements Initializable {
     }
 
     @FXML
-    private void borrar(ActionEvent event) {
+    private void borrar(ActionEvent event) throws AcountDAOException, IOException {
         Alert alerta = new Alert(AlertType.CONFIRMATION);
         alerta.setTitle("Borrar gasto");
         alerta.setContentText("Está seguro que desea borrar el gasto seleccionado ?");
         Optional <ButtonType> opciones = alerta.showAndWait();
         if(opciones.isPresent() && opciones.get()==ButtonType.OK){
+            boolean bol=Acount.getInstance().removeCharge(tabla.getSelectionModel().getSelectedItem());
             datos.remove(tabla.getSelectionModel().getSelectedIndex());
 
             alerta.close();
@@ -179,19 +187,38 @@ public class CuentaController implements Initializable {
     }
 
     @FXML
-    private void modificar(ActionEvent event) throws IOException {
-        FXMLLoader loader= new FXMLLoader(getClass().getResource("/javafxmlapplication/Vista/addGasto.fxml"));
+    private void modificar(ActionEvent event) throws IOException, AcountDAOException {
+        
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("/javafxmlapplication/Vista/modificarGasto.fxml"));
         Parent root = loader.load();
+        Charge cargo= tabla.getSelectionModel().getSelectedItem();
+        int indice = tabla.getSelectionModel().getSelectedIndex();
+        modificarGastoController mod = loader.getController();
+        mod.setCosas(tabla.getSelectionModel().getSelectedItem());
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setTitle("App Gastos");
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.show();
+        stage.showAndWait();
+        if(mod.getDatosV()){
+            cargo.setName(mod.getNombre());
+            cargo.setCost(Double.parseDouble(mod.getCoste()));
+            cargo.setDate(mod.getDate());
+            cargo.setCategory(mod.getCategory());
+            cargo.setDescription(mod.getDesc());
+            cargo.setImageScan(mod.getImage());
+            cargo.setUnits(1);
+            tabla.refresh();
+        }
+        tabla.refresh();
+        
+            
+        
         
     }
     public Charge gastoSeleccionado(){
-        return tabla.getSelectionModel().getSelectedItem();
+        return gasto;
     }
 
     @FXML
@@ -209,6 +236,7 @@ public class CuentaController implements Initializable {
 
     @FXML
     private void detalles(ActionEvent event) throws IOException {
+        
         FXMLLoader loader= new FXMLLoader(getClass().getResource("/javafxmlapplication/Vista/detalles.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
