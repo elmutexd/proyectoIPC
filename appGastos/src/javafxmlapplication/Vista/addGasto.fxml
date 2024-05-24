@@ -12,9 +12,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<GridPane prefWidth="400.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.Controlador.AddGastoController">
+<GridPane prefHeight="546.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.Controlador.AddGastoController">
   <columnConstraints>
     <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="399.6" minWidth="10.0" prefWidth="88.00001220703125" />
     <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="456.00002059936526" minWidth="0.0" prefWidth="311.99998779296874" />
@@ -30,14 +29,13 @@
       <RowConstraints maxHeight="49.599999999999994" minHeight="0.0" prefHeight="34.40001831054687" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="49.599999999999994" minHeight="0.0" prefHeight="34.40001831054687" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="49.599999999999994" minHeight="0.0" prefHeight="34.40001831054687" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="49.599999999999994" minHeight="0.0" prefHeight="34.40001831054687" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="49.599999999999994" minHeight="0.0" prefHeight="34.40001831054687" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="114.19999389648439" minHeight="10.0" prefHeight="38.40001220703124" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="47.400000000000006" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="47.400000000000006" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="53.599999999999994" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="60.60002441406249" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="19.600012207031227" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <Label text="Nombre" GridPane.rowIndex="1">
@@ -50,17 +48,17 @@
             <Insets right="10.0" />
          </GridPane.margin>
       </Label>
-      <Label text="Descripción" GridPane.rowIndex="7">
+      <Label text="Descripción" GridPane.rowIndex="8">
          <GridPane.margin>
             <Insets right="10.0" />
          </GridPane.margin>
       </Label>
-      <Label text="Categoría" GridPane.rowIndex="12">
+      <Label text="Categoría" GridPane.rowIndex="11">
          <GridPane.margin>
             <Insets right="10.0" />
          </GridPane.margin>
       </Label>
-      <Label text="Imagen" GridPane.rowIndex="14">
+      <Label text="Imagen" GridPane.rowIndex="13">
          <GridPane.margin>
             <Insets right="10.0" />
          </GridPane.margin>
@@ -75,13 +73,13 @@
             <Insets right="130.0" />
          </GridPane.margin>
       </TextField>
-      <DatePicker fx:id="addFecha" prefHeight="26.0" prefWidth="170.0" promptText="dd/mm/aaaa" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="5" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES" />
+      <DatePicker fx:id="addFecha" editable="false" prefHeight="26.0" prefWidth="170.0" promptText="dd/mm/aaaa" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="5" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES" />
       <TextArea fx:id="addDesc" promptText="Describa aquí el gasto" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="8" GridPane.rowSpan="2" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES">
          <GridPane.margin>
             <Insets right="90.0" />
          </GridPane.margin>
       </TextArea>
-      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="12" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES">
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="11" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES">
          <children>
             <ComboBox fx:id="addCategoria" prefHeight="26.0" prefWidth="170.0" promptText="Elige la categoria" HBox.hgrow="SOMETIMES">
                <HBox.margin>
@@ -96,21 +94,13 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="14" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES">
-         <children>
-            <Button fx:id="subirImagen" mnemonicParsing="false" onAction="#rutaImagen" text="Subir">
-               <HBox.margin>
-                  <Insets right="5.0" />
-               </HBox.margin></Button>
-            <Text fx:id="textoImagen" strokeType="OUTSIDE" strokeWidth="0.0" />
-         </children>
-      </HBox>
-      <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="16" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES">
+      <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="15" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES">
          <children>
             <Button fx:id="buttonAceptar" mnemonicParsing="false" onAction="#aceptar" text="Guardar" HBox.hgrow="SOMETIMES">
                <HBox.margin>
                   <Insets right="20.0" />
-               </HBox.margin></Button>
+               </HBox.margin>
+            </Button>
             <Button mnemonicParsing="false" onAction="#cancelar" text="Cancelar" HBox.hgrow="SOMETIMES">
                <HBox.margin>
                   <Insets right="30.0" />
@@ -126,7 +116,13 @@
             </Label>
          </children>
       </HBox>
-      <Label fx:id="errorAceptar" prefHeight="17.0" prefWidth="303.0" text="Tienes que completar todos los campos para guardar" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="17">
+      <Label fx:id="errorCantidad" text="La coantidad se tiene que expresar de forma numérica" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="4">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Button fx:id="subirImagen" mnemonicParsing="false" onAction="#rutaImagen" text="Subir" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+      <Label fx:id="errorAceptar" prefHeight="17.0" prefWidth="303.0" text="Tienes que completar todos los campos para guardar" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="14">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

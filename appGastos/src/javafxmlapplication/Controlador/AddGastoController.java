@@ -58,7 +58,6 @@ public class AddGastoController implements Initializable {
     private TextArea addDesc;
     @FXML
     private ComboBox<Category> addCategoria;
-    @FXML
     private Text textoImagen;
     @FXML
     private Button subirImagen;
@@ -69,20 +68,16 @@ public class AddGastoController implements Initializable {
     Image imagen;
     @FXML
     private Label errorAceptar;
+    @FXML
+    private Label errorCantidad;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-      
-        addCoste.textProperty().addListener(new ChangeListener<String>() {
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (!newValue.matches("\\d*")) {
-                    addCoste.setText(newValue.replaceAll("[^\\d]", ""));
-                }
-            }
-        });
+        errorCantidad.setVisible(false);
+        
         addCategoria.setCellFactory(c -> new catBoxListCell());
         addCategoria.setButtonCell(new catButtCell());
         
@@ -108,17 +103,25 @@ public class AddGastoController implements Initializable {
 
     @FXML
     private void aceptar(ActionEvent event) throws AcountDAOException, IOException {
-        if(getNombre()!=null && getCoste()!=null && getDate()!=null && getDesc()!=null /*&& getCategory()!=null && getImage()!=null*/){
+        if(!addCoste.getText().matches("\\d*\\.?\\d+")){
+            errorCantidad.setVisible(true);
+            addCoste.styleProperty().setValue("-fx-background-color: #FF8B8B");
+        }
+        else{
+            System.out.println("Else ejecutado");
+            if(getNombre()!=null && getCoste()!=null && getDate()!=null && getDesc()!=null && getCategory()!=null){
             datosV=true;
             
             Stage stage1 = (Stage) buttonAceptar.getScene().getWindow();
             stage1.close();
             System.out.println("aceptar ejecutado");
             
+            }
+            else{
+                errorAceptar.setVisible(true);
+            }
         }
-        else{
-            errorAceptar.setVisible(true);
-        }
+        
         
     }
     public String getNombre(){

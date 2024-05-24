@@ -69,6 +69,8 @@ public class modificarGastoController implements Initializable {
     private boolean datosV;
 
     private Charge gasto;
+    @FXML
+    private Label errorCantidad;
 
     /**
      * Initializes the controller class.
@@ -83,13 +85,18 @@ public class modificarGastoController implements Initializable {
         addCategoria.setValue(gasto.getCategory());
         addCategoria.setPromptText(gasto.getCategory().getName());
         textoImagen.setText(gasto.getImageScan().toString());
-        imagen = gasto.getImageScan();
+        
+        if(gasto.getImageScan()!=null){
+            imagen = gasto.getImageScan();
+
+        }
         addCoste.setText(Double.toString(gasto.getCost()));
     
     }
     public void initialize(URL url, ResourceBundle rb) {
        
         
+<<<<<<< Updated upstream
         addCoste.textProperty().addListener(new ChangeListener<String>() {
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 if (!newValue.matches("\\d*")) {
@@ -101,6 +108,9 @@ public class modificarGastoController implements Initializable {
         addCategoria.setCellFactory(c -> new modificarGastoController.catBoxListCell());
         addCategoria.setButtonCell(new modificarGastoController.catButtCell());
         
+=======
+        errorCantidad.setVisible(false);
+>>>>>>> Stashed changes
         errorAceptar.setVisible(false);
         addFecha.setDayCellFactory((DatePicker picker) -> {
             return new DateCell() {
@@ -148,27 +158,31 @@ public class modificarGastoController implements Initializable {
 
     @FXML
     private void aceptar(ActionEvent event) throws AcountDAOException, IOException {
-        if(getNombre()!=null && getCoste()!=null && getDate()!=null && getDesc()!=null /*&& getCategory()!=null && getImage()!=null*/){
-            datosV=true;
-            Stage stage1 = (Stage) buttonAceptar.getScene().getWindow();
-            stage1.close();
-            gasto.setCategory(addCategoria.getValue());
-            gasto.setCost(Double.parseDouble(addCoste.getText()));
-            gasto.setDate(addFecha.getValue());
-            gasto.setDescription(addDesc.getText());
-            gasto.setImageScan(imagen);
-            gasto.setName(addNombre.getText());
+        if(!addCoste.getText().matches("\\d*\\.?\\d+")){
+            errorCantidad.setVisible(true);
+            addCoste.styleProperty().setValue("-fx-background-color: #FF8B8B");
         }
-        else{
-            errorAceptar.setVisible(true);
+            else{
+                    
+            if(getNombre()!=null && getCoste()!=null && getDate()!=null && getDesc()!=null /*&& getCategory()!=null && getImage()!=null*/){
+                datosV=true;
+                Stage stage1 = (Stage) buttonAceptar.getScene().getWindow();
+                stage1.close();
+                
+            }
+            else{
+                errorAceptar.setVisible(true);
+            }
         }
     }
+        
+        
     public String getNombre(){
     
         return addNombre.getText();
     }
-    public String getCoste(){
-        return addCoste.getText();
+    public Double getCoste(){
+        return Double.parseDouble(addCoste.getText());
     }
     public LocalDate getDate(){
         return addFecha.getValue();
