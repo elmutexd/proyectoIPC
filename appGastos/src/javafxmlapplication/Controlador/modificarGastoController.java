@@ -28,8 +28,10 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.ComboBoxListCell;
 import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -107,6 +109,7 @@ public class modificarGastoController implements Initializable {
         try{
         ObservableList<Category> observableList = FXCollections.observableList(Acount.getInstance().getUserCategories());
         addCategoria.setItems(observableList);
+        
         }
         catch(Exception e){
             System.out.println("Error en añadir");
@@ -199,6 +202,23 @@ public class modificarGastoController implements Initializable {
         if(file != null){
             imagen = new Image(file.toURI().toString(),500,500,false,false); //hacer que todas las imagenes sean 500x500
             textoImagen.setText(file.getName());
+        }
+    }
+    class catBoxListCell extends ComboBoxListCell<Category>{
+        @Override
+        public void updateItem(Category t, boolean bln) {
+            super.updateItem(t, bln); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+            if(t == null || bln){setText(null);}
+            else{setText(t.getName());}
+        }
+    }
+    
+    class catButtCell extends ListCell<Category>{
+        @Override
+        protected void updateItem(Category t, boolean bln) {
+            super.updateItem(t, bln); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+            if(t == null || bln){setText(null);}
+            else{setText(t.getName());}
         }
     }
     
