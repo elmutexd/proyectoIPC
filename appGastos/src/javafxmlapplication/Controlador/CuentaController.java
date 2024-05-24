@@ -8,7 +8,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.StackWalker.Option;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.chrono.ChronoLocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.binding.Bindings;
@@ -26,6 +29,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -40,6 +44,7 @@ import model.Acount;
 import model.AcountDAOException;
 import model.Charge;
 import model.User;
+
 /**
  * FXML Controller class
  *
@@ -72,6 +77,10 @@ public class CuentaController implements Initializable {
     @FXML
     private Button buttonDetalles;
     private Charge gasto;
+    @FXML
+    private DatePicker fechaDesde;
+    @FXML
+    private DatePicker fechaHasta;
 
     /**
      * Initializes the controller class.
@@ -85,22 +94,43 @@ public class CuentaController implements Initializable {
         modificarButton.disableProperty().bind(Bindings.equal(-1, tabla.getSelectionModel().selectedIndexProperty()));
         buttonDetalles.setDisable(true);
         buttonDetalles.disableProperty().bind(Bindings.equal(-1, tabla.getSelectionModel().selectedIndexProperty()));
-        cGasto.setCellValueFactory(
-                (cargo)-> new SimpleStringProperty(cargo.getValue().getName()) );
         
-        cCat.setCellValueFactory(
-                (cargo)-> new SimpleStringProperty(cargo.getValue().getCategory().getName()) );
-        cFecha.setCellValueFactory(
-                (cargo)-> new SimpleStringProperty(cargo.getValue().getDate().toString()) ); 
-        cCoste.setCellValueFactory(
-                (cargo)-> new SimpleStringProperty((Double.toString(cargo.getValue().getCost())+"$")) );
+        
         
         try{
             
             iniModelo();
             imagenCuenta.setImage(Acount.getInstance().getLoggedUser().getImage());
-
-                        
+            cGasto.setCellValueFactory(
+                (cargo)-> new SimpleStringProperty(cargo.getValue().getName()) );
+        
+            cCat.setCellValueFactory(
+                (cargo)-> new SimpleStringProperty(cargo.getValue().getCategory().getName()) );
+            cFecha.setCellValueFactory(
+                (cargo)-> new SimpleStringProperty(cargo.getValue().getDate().toString()) ); 
+            cCoste.setCellValueFactory(
+                (cargo)-> new SimpleStringProperty((Double.toString(cargo.getValue().getCost()))) );
+            fechaHasta.setValue(LocalDate.now());
+            fechaDesde.setValue(fechaMin(Acount.getInstance().getUserCharges()));
+            fechaHasta.valueProperty().addListener((ob,oldV,newV)->{
+                   try{
+                    actDatos(fechaDesde.getValue(),newV);
+                    }
+                   catch(Exception e){
+                       System.out.println("Excepcion en fecha hasta");
+                   }
+            
+            });
+            fechaDesde.valueProperty().addListener((ob,oldV,newV)->{
+            
+                try{
+                    actDatos(newV,fechaHasta.getValue());
+                    }
+                   catch(Exception e){
+                       System.out.println("Excepcion en fecha desde");
+                   }
+                
+            });
             
         }
         catch(Exception e){
@@ -108,7 +138,85 @@ public class CuentaController implements Initializable {
                 }
         
     }
-     private void iniModelo() throws AcountDAOException, IOException{
+    private void actDatos(LocalDate fechaDesde, LocalDate fechaHasta) throws AcountDAOException, IOException{
+        List <Charge> lista = Acount.getInstance().getUserCharges();
+        
+        for(int i=0;i<lista.size();i++){
+            if((menorqueFecha(lista.get(i).getDate(),fechaHasta) && mayorqueFecha(lista.get(i).getDate(),fechaDesde))!=true){
+                lista.remove(i);
+            }
+            
+        }
+        ArrayList<Charge> misdatos= new ArrayList<>(lista);
+        datos = FXCollections.observableArrayList(misdatos);
+        tabla.setItems(datos);
+        datos = tabla.getItems();
+        tabla.refresh();
+        
+
+        
+    
+    }
+    private boolean mayorqueFecha(LocalDate x, LocalDate y){
+        boolean res = false;
+        if(x.getYear()>y.getYear()){
+            res= true;
+        }
+        else if(x.getYear()==y.getYear()){
+            if(x.getMonthValue()>y.getMonthValue()){
+                res= true;
+            }
+            else if(x.getMonthValue()==y.getMonthValue()){
+                if(x.getDayOfMonth()>=y.getDayOfMonth()){
+                    res= true;
+                }
+                
+            }
+        }
+        return res;
+        
+    }
+    private boolean menorqueFecha(LocalDate x, LocalDate y){
+        boolean res = false;
+        if(x.getYear()<y.getYear()){
+            res= true;
+        }
+        else if(x.getYear()==y.getYear()){
+            if(x.getMonthValue()<y.getMonthValue()){
+                res= true;
+            }
+            else if(x.getMonthValue()==y.getMonthValue()){
+                if(x.getDayOfMonth()<=y.getDayOfMonth()){
+                    res= true;
+                }
+                
+            }
+        }
+        return res;
+    
+    }
+    private LocalDate fechaMin(List<Charge> lista){
+        LocalDate min= LocalDate.MAX;
+        for(int i =0;i<lista.size();i++){
+            if(lista.get(i).getDate().getYear()<min.getYear()){
+                min= lista.get(i).getDate();
+            }
+            else if(lista.get(i).getDate().getYear()==min.getYear()){
+                if(lista.get(i).getDate().getMonthValue()<min.getMonthValue()){
+                    min= lista.get(i).getDate();
+                }
+                else if(lista.get(i).getDate().getMonthValue()==min.getMonthValue()){
+                    if(lista.get(i).getDate().getDayOfMonth()<min.getDayOfMonth()){
+                        min=lista.get(i).getDate();
+                    }
+                }
+            }
+            
+        }
+        
+        return min;
+    }
+    private void iniModelo() throws AcountDAOException, IOException{
         ArrayList<Charge> misdatos= new ArrayList<>(Acount.getInstance().getUserCharges());
         datos = FXCollections.observableArrayList(misdatos);
         tabla.setItems(datos);
@@ -188,7 +296,6 @@ public class CuentaController implements Initializable {
 
     @FXML
     private void modificar(ActionEvent event) throws IOException, AcountDAOException {
-        
         FXMLLoader loader= new FXMLLoader(getClass().getResource("/javafxmlapplication/Vista/modificarGasto.fxml"));
         Parent root = loader.load();
         Charge cargo= tabla.getSelectionModel().getSelectedItem();
@@ -201,17 +308,17 @@ public class CuentaController implements Initializable {
         stage.setTitle("App Gastos");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
-        if(mod.getDatosV()){
-            cargo.setName(mod.getNombre());
-            cargo.setCost(Double.parseDouble(mod.getCoste()));
-            cargo.setDate(mod.getDate());
-            cargo.setCategory(mod.getCategory());
-            cargo.setDescription(mod.getDesc());
-            cargo.setImageScan(mod.getImage());
+        modificarGastoController post = loader.getController();
+        if(post.getDatosV()){
+            cargo.setName(post.getNombre());
+            cargo.setCost(post.getCoste());
+            cargo.setDate(post.getDate());
+            cargo.setCategory(post.getCategory());
+            cargo.setDescription(post.getDesc());
+            cargo.setImageScan(post.getImage());
             cargo.setUnits(1);
             tabla.refresh();
         }
-        tabla.refresh();
         
             
         
@@ -239,12 +346,14 @@ public class CuentaController implements Initializable {
         
         FXMLLoader loader= new FXMLLoader(getClass().getResource("/javafxmlapplication/Vista/detalles.fxml"));
         Parent root = loader.load();
+        DetallesController det = loader.getController();
         Scene scene = new Scene(root);
+        det.setCosas(tabla.getSelectionModel().getSelectedItem());
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setTitle("App Gastos");
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.show();
+        stage.showAndWait();
     }
         
 
@@ -263,7 +372,18 @@ public class CuentaController implements Initializable {
     }*/
 
     @FXML
-    private void pdf(ActionEvent event) {
+    private void pdf(ActionEvent event) throws AcountDAOException, IOException {
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/javafxmlapplication/Vista/imprimir.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("App Gastos");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
+        
+        
     }
 
 

@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import model.Charge;
 
 /**
  * FXML Controller class
@@ -37,14 +38,21 @@ public class DetallesController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-            FXMLLoader loader= new FXMLLoader(getClass().getResource("/javafxmlapplication/Vista/detalles.fxml"));
-            CuentaController cuenta = loader.getController();
-            nombre.setText(cuenta.gastoSeleccionado().getName());
+            
             
             
             
             
 
-    }    
+    }
+    public void setCosas(Charge gasto){
+        nombre.setText(gasto.getName());
+        descripcion.setText(gasto.getDescription());
+        categoria.setText(gasto.getCategory().getName());
+        coste.setText(gasto.getCost()+ "$");
+        fecha.setText(gasto.getDate().toString());
+        imagen.setImage(gasto.getImageScan());
+    
+    }
     
 }
