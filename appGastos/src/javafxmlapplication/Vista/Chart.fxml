@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.chart.StackedBarChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -13,21 +13,21 @@
    <children>
       <VBox layoutX="72.0" layoutY="14.0">
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="BOTTOM_CENTER" prefHeight="13.0" prefWidth="500.0">
                <children>
                   <Button mnemonicParsing="false" onAction="#antes" text="&lt;" />
                   <Text fx:id="ano" strokeType="OUTSIDE" strokeWidth="0.0" text="2024" />
                   <Button mnemonicParsing="false" onAction="#despues" text="&gt;" />
                </children>
             </HBox>
-            <StackedBarChart fx:id="grafo">
+            <BarChart fx:id="graph" title="Gastos por mes">
               <xAxis>
-                <CategoryAxis side="BOTTOM" />
+                <CategoryAxis fx:id="cats" label="Meses" side="BOTTOM" />
               </xAxis>
               <yAxis>
-                <NumberAxis side="LEFT" />
+                <NumberAxis fx:id="gastos" label="Euros" side="LEFT" />
               </yAxis>
-            </StackedBarChart>
+            </BarChart>
          </children>
       </VBox>
    </children>
