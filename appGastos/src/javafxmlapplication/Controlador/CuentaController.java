@@ -279,7 +279,7 @@ public class CuentaController implements Initializable {
             alerta.close();
             Stage stage1 = (Stage) borrarButton.getScene().getWindow();
             stage1.close();
-            FXMLLoader loader= new  FXMLLoader(getClass().getResource("../Vista/InicioSesion.fxml"));
+            FXMLLoader loader= new  FXMLLoader(getClass().getResource("../Vista/Vista.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -384,18 +384,6 @@ public class CuentaController implements Initializable {
         stage.showAndWait();
         
         
-    }
-
-    @FXML
-    private void chartBoton(ActionEvent event) throws IOException {
-        FXMLLoader loader= new FXMLLoader(getClass().getResource("/javafxmlapplication/Vista/Chart.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("App Gastos");
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.show();
     }
 
 

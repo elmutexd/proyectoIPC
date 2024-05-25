@@ -3,7 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/julil/Documents/Uni/2º/IPC/proyectoIPC/appGastos/src/javafxmlapplication/Controlador/ChartController.java</file>
+            <file>file:/C:/Users/coozy/Desktop/ProyectoIPC/gitIPC/proyectoIPC/appGastos/src/javafxmlapplication/Controlador/JavaFXMLApplication.java</file>
+            <file>file:/C:/Users/coozy/Desktop/ProyectoIPC/gitIPC/proyectoIPC/appGastos/src/javafxmlapplication/Controlador/AddGastoController.java</file>
+            <file>file:/C:/Users/coozy/Desktop/ProyectoIPC/gitIPC/proyectoIPC/appGastos/src/javafxmlapplication/Controlador/InicioSesionController.java</file>
+            <file>file:/C:/Users/coozy/Desktop/ProyectoIPC/gitIPC/proyectoIPC/appGastos/src/javafxmlapplication/Controlador/DetallesController.java</file>
+            <file>file:/C:/Users/coozy/Desktop/ProyectoIPC/gitIPC/proyectoIPC/appGastos/src/javafxmlapplication/Controlador/CuentaController.java</file>
+            <file>file:/C:/Users/coozy/Desktop/ProyectoIPC/gitIPC/proyectoIPC/appGastos/src/javafxmlapplication/Vista/inicioSesion.fxml</file>
         </group>
     </open-files>
 </project-private>

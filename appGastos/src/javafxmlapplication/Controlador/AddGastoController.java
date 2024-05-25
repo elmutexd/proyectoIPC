@@ -77,7 +77,7 @@ public class AddGastoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         errorCantidad.setVisible(false);
-        addCoste.focusedProperty().addListener((ob,oldV,newV)->{if(!newV){checkCoste();}});   
+        
         addCategoria.setCellFactory(c -> new catBoxListCell());
         addCategoria.setButtonCell(new catButtCell());
         
@@ -184,7 +184,7 @@ public class AddGastoController implements Initializable {
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.setTitle("Crear Categoría");
-            stage.showAndWait();
+            stage.show();
             ObservableList<Category> observableList = FXCollections.observableList(Acount.getInstance().getUserCategories());
             addCategoria.setItems(observableList);
     }
@@ -215,14 +215,4 @@ public class AddGastoController implements Initializable {
             else{setText(t.getName());}
         }
     }  
-    
-    private void checkCoste(){
-        if(addCoste.getText().matches("[0-9]*.??[0-9]*")){
-            errorCantidad.setVisible(false);
-            addCoste.styleProperty().setValue(null); 
-        }else{
-            errorCantidad.visibleProperty().set(true);
-            addCoste.styleProperty().setValue("-fx-background-color: #FF8B8B"); 
-        }
-    }
 }

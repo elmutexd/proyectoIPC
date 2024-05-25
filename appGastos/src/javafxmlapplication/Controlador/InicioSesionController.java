@@ -122,6 +122,22 @@ public class InicioSesionController implements Initializable {
 
     @FXML
     private void Cambiar_contrasenya(MouseEvent event) {
+        try {
+            // Cargar el archivo FXML para la nueva ventana
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Vista/cambioContrasenya.fxml"));
+            Parent root = fxmlLoader.load();
+
+            // Crear una nueva escena y un nuevo stage
+            Stage stage = new Stage();
+            stage.setTitle("Cambio contraseña");
+            stage.setScene(new Scene(root));
+            stage.show();
+            // Cerrar la ventana actual (Vista.xml)
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
