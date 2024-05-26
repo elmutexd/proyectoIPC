@@ -90,7 +90,7 @@
                   <Font name="System Bold" size="12.0" />
                </font></Button>
             <Button fx:id="buttonDetalles" mnemonicParsing="false" onAction="#detalles" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: LIGHTGREEN; -fx-font-weight: Bold;" text="Detalles" VBox.vgrow="SOMETIMES" />
-            <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="87.0" style="-fx-background-color: LIGHTGREEN; -fx-font-weight: Bold;" text="Estadísticas" VBox.vgrow="SOMETIMES" />
+            <Button mnemonicParsing="false" onAction="#estad" prefHeight="33.0" prefWidth="87.0" style="-fx-background-color: LIGHTGREEN; -fx-font-weight: Bold;" text="Estadísticas" VBox.vgrow="SOMETIMES" />
             <Button fx:id="catButton" mnemonicParsing="false" onAction="#verCategorias" prefHeight="31.0" prefWidth="88.0" style="-fx-background-color: LIGHTGREEN; -fx-font-weight: Bold;" text="Categorías" VBox.vgrow="SOMETIMES" />
             <Button fx:id="modificarButton" mnemonicParsing="false" onAction="#modificar" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: LIGHTGREEN; -fx-font-weight: Bold;" text="Modificar" VBox.vgrow="SOMETIMES" />
             <Button fx:id="borrarButton" mnemonicParsing="false" onAction="#borrar" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: LIGHTGREEN; -fx-font-weight: Bold;" text="Borrar" VBox.vgrow="SOMETIMES">

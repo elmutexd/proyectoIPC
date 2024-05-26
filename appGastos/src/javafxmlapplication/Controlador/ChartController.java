@@ -89,7 +89,6 @@ public class ChartController implements Initializable {
                        switch(carg.get(j).getDate().getMonth()){
                             case JANUARY:
                                 contMes[0] += carg.get(j).getCost();
-                                carg.remove(j);
                             break;
                             case FEBRUARY:
                                 contMes[1] += carg.get(j).getCost();
