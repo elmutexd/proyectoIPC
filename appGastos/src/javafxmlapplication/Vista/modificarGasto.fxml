@@ -124,7 +124,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="errorCantidad" text="La coantidad se tiene que expresar de forma numérica" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="4">
+      <Label fx:id="errorCantidad" text="La cantidad se tiene que expresar de forma numérica" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="4">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

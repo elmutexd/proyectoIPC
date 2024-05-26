@@ -29,11 +29,11 @@
   </columnConstraints>
   <rowConstraints>
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="224.33331298828125" minHeight="10.0" prefHeight="209.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="128.33334350585938" minHeight="10.0" prefHeight="57.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="305.6666259765625" minHeight="10.0" prefHeight="277.6666259765625" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="128.33334350585938" minHeight="10.0" prefHeight="75.00003051757812" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <MediaView fx:id="mediaView" fitHeight="900.0" fitWidth="900.0" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowSpan="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+      <MediaView fx:id="mediaView" fitHeight="1200.0" fitWidth="1000.0" scaleX="2.0" scaleY="2.0" x="300.0" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowSpan="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
          <viewport>
             <Rectangle2D />
          </viewport>
@@ -64,12 +64,12 @@
             <Insets bottom="85.0" top="110.0" />
          </GridPane.margin>
       </Pane>
-      <VBox prefHeight="400.0" prefWidth="229.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowSpan="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+      <VBox prefHeight="400.0" prefWidth="229.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowSpan="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
          <padding>
             <Insets bottom="20.0" top="20.0" />
          </padding>
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="15.0">
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="96.0" prefWidth="403.0" spacing="15.0" VBox.vgrow="ALWAYS">
                <children>
                   <Text fill="#bdffc5" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: &quot;Arial&quot;; -fx-font-weight: Bold;" text="MyMoney" textAlignment="CENTER">
                      <font>
@@ -92,14 +92,11 @@
                      </HBox.margin>
                   </ImageView>
                </children>
-               <padding>
-                  <Insets left="40.0" top="30.0" />
-               </padding>
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
             </HBox>
-            <VBox prefHeight="177.0" prefWidth="340.0" spacing="5.0">
+            <VBox maxHeight="-Infinity" prefHeight="200.0" prefWidth="404.0" spacing="5.0" VBox.vgrow="ALWAYS">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="INICIAR SESIÓN">
                      <font>
@@ -111,7 +108,7 @@
                         <Font name="Arial Bold" size="15.0" />
                      </font>
                   </Text>
-                  <HBox prefHeight="27.0" prefWidth="223.0" spacing="10.0">
+                  <HBox prefHeight="26.0" prefWidth="359.0" spacing="10.0" VBox.vgrow="ALWAYS">
                      <children>
                         <ImageView fitHeight="26.0" fitWidth="28.0">
                            <image>
@@ -130,7 +127,7 @@
                         <Font name="Arial Bold" size="15.0" />
                      </font>
                   </Text>
-                  <HBox fx:id="HBox_ocultarPass" prefHeight="217.0" prefWidth="300.0" spacing="10.0">
+                  <HBox fx:id="HBox_ocultarPass" prefHeight="217.0" prefWidth="300.0" spacing="10.0" VBox.vgrow="ALWAYS">
                      <children>
                         <ImageView fitHeight="25.0" fitWidth="27.0">
                            <image>
@@ -181,7 +178,7 @@
                         <Insets />
                      </opaqueInsets>
                   </HBox>
-                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="23.0" prefWidth="300.0" spacing="40.0">
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="23.0" prefWidth="300.0" spacing="40.0" VBox.vgrow="ALWAYS">
                      <children>
                         <Text fill="WHITE" onMouseClicked="#Cambiar_contrasenya" strokeType="OUTSIDE" strokeWidth="0.0" text="Cambiar contraseña" underline="true">
                            <cursor>
@@ -198,14 +195,18 @@
                         </Text>
                      </children>
                   </HBox>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#Iniciar_sesion" prefHeight="34.0" prefWidth="61.0" style="-fx-background-color: #228787; -fx-font-family: Arial; -fx-font-weight: Bold;" text="Aceptar" textAlignment="CENTER" textFill="WHITE" translateY="-8.0" VBox.vgrow="ALWAYS">
+                  <HBox alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="378.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#Iniciar_sesion" prefHeight="34.0" prefWidth="61.0" style="-fx-background-color: #228787; -fx-font-family: Arial; -fx-font-weight: Bold;" text="Aceptar" textAlignment="CENTER" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
                      <VBox.margin>
-                        <Insets left="170.0" />
+                        <Insets bottom="20.0" right="30.0" />
                      </VBox.margin>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
+                  </HBox>
                </children>
                <padding>
                   <Insets left="40.0" />
@@ -216,7 +217,7 @@
             <Insets />
          </opaqueInsets>
       </VBox>
-      <VBox prefHeight="101.0" prefWidth="407.0" spacing="5.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+      <VBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="71.0" prefWidth="404.0" spacing="5.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="BASELINE" GridPane.vgrow="ALWAYS">
          <children>
             <Text fill="#acffc8" onMouseClicked="#registrarse" strokeType="OUTSIDE" strokeWidth="0.0" text="¿No estás registrad@? | Haz click aquí" underline="true" VBox.vgrow="ALWAYS">
                <cursor>
@@ -236,9 +237,9 @@
                </cursor>
             </Text>
          </children>
-         <padding>
+         <GridPane.margin>
             <Insets bottom="20.0" />
-         </padding>
+         </GridPane.margin>
       </VBox>
    </children>
 </GridPane>

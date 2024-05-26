@@ -94,23 +94,11 @@ public class modificarGastoController implements Initializable {
     
     }
     public void initialize(URL url, ResourceBundle rb) {
-       
-        
-<<<<<<< Updated upstream
-        addCoste.textProperty().addListener(new ChangeListener<String>() {
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (!newValue.matches("\\d*")) {
-                    addCoste.setText(newValue.replaceAll("[^\\d]", ""));
-                }
-            }
-        });
-        
+        addCoste.focusedProperty().addListener((ob,oldV,newV)->{if(!newV){checkCoste();}});   
         addCategoria.setCellFactory(c -> new modificarGastoController.catBoxListCell());
         addCategoria.setButtonCell(new modificarGastoController.catButtCell());
-        
-=======
+
         errorCantidad.setVisible(false);
->>>>>>> Stashed changes
         errorAceptar.setVisible(false);
         addFecha.setDayCellFactory((DatePicker picker) -> {
             return new DateCell() {
@@ -140,7 +128,8 @@ public class modificarGastoController implements Initializable {
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
-            stage.setTitle("Crear");
+            stage.setTitle("Crear Categoria");
+            stage.showAndWait();
             ObservableList<Category> observableList = FXCollections.observableList(Acount.getInstance().getUserCategories());
             addCategoria.setItems(observableList);
             
@@ -242,4 +231,13 @@ public class modificarGastoController implements Initializable {
         }
     }
     
+    private void checkCoste(){
+        if(addCoste.getText().matches("[0-9]*.??[0-9]*")){
+            errorCantidad.setVisible(false);
+            addCoste.styleProperty().setValue(null); 
+        }else{
+            errorCantidad.visibleProperty().set(true);
+            addCoste.styleProperty().setValue("-fx-background-color: #FF8B8B"); 
+        }
+    }
 }

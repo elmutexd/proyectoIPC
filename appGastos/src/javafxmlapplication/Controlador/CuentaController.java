@@ -77,9 +77,7 @@ public class CuentaController implements Initializable {
     @FXML
     private Button buttonDetalles;
     private Charge gasto;
-    @FXML
     private DatePicker fechaDesde;
-    @FXML
     private DatePicker fechaHasta;
 
     /**
@@ -384,6 +382,18 @@ public class CuentaController implements Initializable {
         stage.showAndWait();
         
         
+    }
+
+    @FXML
+    private void estad(ActionEvent event) throws IOException {
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("/javafxmlapplication/Vista/Chart.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("App Gastos");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
     }
 
 
