@@ -89,39 +89,51 @@ public class ChartController implements Initializable {
                        switch(carg.get(j).getDate().getMonth()){
                             case JANUARY:
                                 contMes[0] += carg.get(j).getCost();
+                                carg.remove(j);
                             break;
                             case FEBRUARY:
                                 contMes[1] += carg.get(j).getCost();
+                                carg.remove(j);
                             break;
                             case MARCH:
                                 contMes[2] += carg.get(j).getCost();
+                                carg.remove(j);
                             break;
                             case APRIL:
                                 contMes[3] += carg.get(j).getCost();
+                                carg.remove(j);
                             break;
                             case MAY:
                                 contMes[4] += carg.get(j).getCost();
+                                carg.remove(j);
                             break;
                             case JUNE:
                                 contMes[5] += carg.get(j).getCost();
+                                carg.remove(j);
                             break;
                             case JULY:
                                 contMes[6] += carg.get(j).getCost();
+                                carg.remove(j);
                             break;
                             case AUGUST:
                                 contMes[7] += carg.get(j).getCost();
+                                carg.remove(j);
                             break;
                             case SEPTEMBER:
                                 contMes[8] += carg.get(j).getCost();
+                                carg.remove(j);
                             break;
                             case OCTOBER:
                                 contMes[9] += carg.get(j).getCost();
+                                carg.remove(j);
                             break;
                             case NOVEMBER:
                                 contMes[10] += carg.get(j).getCost();
+                                carg.remove(j);
                             break;
                             case DECEMBER:
                                 contMes[11] += carg.get(j).getCost();
+                                carg.remove(j);
                             break;
                         } 
                     }
