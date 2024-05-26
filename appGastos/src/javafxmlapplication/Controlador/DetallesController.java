@@ -6,11 +6,13 @@ package javafxmlapplication.Controlador;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import model.Charge;
 
 /**
@@ -53,6 +55,12 @@ public class DetallesController implements Initializable {
         fecha.setText(gasto.getDate().toString());
         imagen.setImage(gasto.getImageScan());
     
+    }
+
+    @FXML
+    private void aceptar(ActionEvent event) {
+        Stage stage1 = (Stage) nombre.getScene().getWindow();
+        stage1.close();
     }
     
 }
