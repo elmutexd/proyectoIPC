@@ -303,6 +303,8 @@ public class CuentaController implements Initializable {
         mod.setCosas(tabla.getSelectionModel().getSelectedItem());
         Scene scene = new Scene(root);
         Stage stage = new Stage();
+        stage.setResizable(false);
+
         stage.setScene(scene);
         stage.setTitle("Modificar Gasto");
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -349,6 +351,8 @@ public class CuentaController implements Initializable {
         Scene scene = new Scene(root);
         det.setCosas(tabla.getSelectionModel().getSelectedItem());
         Stage stage = new Stage();
+        stage.setResizable(false);
+
         stage.setScene(scene);
         stage.setTitle("Detalles de gasto");
         stage.initModality(Modality.APPLICATION_MODAL);
