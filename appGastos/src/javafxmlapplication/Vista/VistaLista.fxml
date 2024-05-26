@@ -8,13 +8,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane prefHeight="522.0" prefWidth="477.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.Controlador.VistaListaControlador_1">
+<BorderPane prefHeight="522.0" prefWidth="477.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.Controlador.VistaListaControlador_1">
    <right>
       <VBox spacing="15.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="addButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addAccion" text="Añadir" />
-            <Button fx:id="modificarButton" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#modAccion" text="Modificar" />
-            <Button fx:id="borrarButton" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#borrarAccion" text="Borrar" />
+            <Button fx:id="addButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addAccion" style="-fx-background-color: lightgreen; -fx-font-weight: bold;" text="Añadir" />
+            <Button fx:id="modificarButton" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#modAccion" style="-fx-background-color: lightgreen; -fx-font-weight: bold;" text="Modificar" />
+            <Button fx:id="borrarButton" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#borrarAccion" style="-fx-background-color: lightgreen; -fx-font-weight: bold;" text="Borrar" />
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -22,15 +22,15 @@
       </VBox>
    </right>
    <center>
-      <ListView fx:id="catListView" maxWidth="1.7976931348623157E308" prefHeight="200.0" style="-fx-background-color: lavender;" BorderPane.alignment="CENTER">
+      <ListView fx:id="catListView" maxWidth="1.7976931348623157E308" prefHeight="200.0" style="-fx-background-color: lavender; -fx-border-color: lightgreen;" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="10.0" left="30.0" top="12.0" />
          </BorderPane.margin></ListView>
    </center>
    <top>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tus Categorías" BorderPane.alignment="CENTER">
+      <Text fill="LIGHTGREEN" strokeType="OUTSIDE" strokeWidth="0.0" text="Tus Categorías" underline="true" BorderPane.alignment="CENTER">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
          <BorderPane.margin>
             <Insets top="10.0" />
@@ -38,7 +38,7 @@
       </Text>
    </top>
    <bottom>
-      <Button mnemonicParsing="false" onAction="#salir" text="Regresar" BorderPane.alignment="CENTER">
+      <Button mnemonicParsing="false" onAction="#salir" style="-fx-background-color: lightgreen; -fx-font-weight: bold;" text="Regresar" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="10.0" />
          </BorderPane.margin>
