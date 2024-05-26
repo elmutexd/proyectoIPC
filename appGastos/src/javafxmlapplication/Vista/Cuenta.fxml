@@ -29,11 +29,6 @@
                     <MenuItem mnemonicParsing="false" onAction="#pdf" text="Imprimir PDF" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
-                  </items>
-                </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                   <items>
                     <MenuItem mnemonicParsing="false" text="About" />
@@ -43,12 +38,17 @@
             </MenuBar>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                <children>
-                  <Label style="-fx-text-fill: LIGHTGREEN;" text="Seleccione la fecha que quiera">
+                  <Label style="-fx-text-fill: LIGHTGREEN;" text="Seleccione la fecha que quiera" HBox.hgrow="SOMETIMES">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
                   <DatePicker fx:id="fechaDesde" HBox.hgrow="SOMETIMES" />
+                  <Label text="-" textFill="LIGHTGREEN">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
                   <DatePicker fx:id="fechaHasta" HBox.hgrow="SOMETIMES" />
                </children>
                <VBox.margin>
@@ -61,10 +61,10 @@
    <center>
       <TableView fx:id="tabla" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: BLACK; -fx-border-color: LIGHTGREEN;" stylesheets="@../../hojasDeEstilo/Tabla.css" BorderPane.alignment="CENTER">
         <columns>
-            <TableColumn fx:id="cGasto" prefWidth="75.0" styleClass="table-column-header" text="Gasto" />
-            <TableColumn id="column" fx:id="cCat" prefWidth="75.0" styleClass="table-column-header" text="Categoría" />
-          <TableColumn fx:id="cFecha" prefWidth="75.0" styleClass="table-column-header" text="Fecha" />
-          <TableColumn fx:id="cCoste" prefWidth="75.0" styleClass="table-column-header" text="Coste" />
+            <TableColumn fx:id="cGasto" prefWidth="75.0" style="-fx-border-width: 0;" text="Gasto" />
+            <TableColumn id="column" fx:id="cCat" prefWidth="75.0" style="-fx-border-width: 0;" styleClass="table-column-header" text="Categoría" />
+          <TableColumn fx:id="cFecha" prefWidth="75.0" style="-fx-border-width: 0;" styleClass="table-column-header" text="Fecha" />
+          <TableColumn fx:id="cCoste" prefWidth="75.0" style="-fx-border-width: 0;" styleClass="table-column-header" text="Coste" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -91,7 +91,7 @@
             </Label>
             <MenuButton fx:id="buttonMenu" mnemonicParsing="false" style="-fx-background-color: LIGHTGREEN;" VBox.vgrow="SOMETIMES">
               <items>
-                <MenuItem mnemonicParsing="false" text="Opciones de la cuenta" />
+                <MenuItem mnemonicParsing="false" onAction="#options" text="Opciones de la cuenta" />
                 <MenuItem mnemonicParsing="false" onAction="#salir" text="Cerrar" />
               </items>
                <graphic>
@@ -106,8 +106,8 @@
                   <Font name="System Bold" size="12.0" />
                </font></Button>
             <Button fx:id="buttonDetalles" mnemonicParsing="false" onAction="#detalles" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: LIGHTGREEN; -fx-font-weight: Bold;" text="Detalles" VBox.vgrow="SOMETIMES" />
-            <Button mnemonicParsing="false" onAction="#estad" prefHeight="33.0" prefWidth="87.0" style="-fx-background-color: LIGHTGREEN; -fx-font-weight: Bold;" text="Estadísticas" VBox.vgrow="SOMETIMES" />
-            <Button fx:id="catButton" mnemonicParsing="false" onAction="#verCategorias" prefHeight="31.0" prefWidth="88.0" style="-fx-background-color: LIGHTGREEN; -fx-font-weight: Bold;" text="Categorías" VBox.vgrow="SOMETIMES" />
+            <Button mnemonicParsing="false" onAction="#estad" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: LIGHTGREEN; -fx-font-weight: Bold;" text="Estadísticas" VBox.vgrow="SOMETIMES" />
+            <Button fx:id="catButton" mnemonicParsing="false" onAction="#verCategorias" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: LIGHTGREEN; -fx-font-weight: Bold;" text="Categorías" VBox.vgrow="SOMETIMES" />
             <Button fx:id="modificarButton" mnemonicParsing="false" onAction="#modificar" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: LIGHTGREEN; -fx-font-weight: Bold;" text="Modificar" VBox.vgrow="SOMETIMES" />
             <Button fx:id="borrarButton" mnemonicParsing="false" onAction="#borrar" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: LIGHTGREEN; -fx-font-weight: Bold;" text="Borrar" VBox.vgrow="SOMETIMES">
                <VBox.margin>

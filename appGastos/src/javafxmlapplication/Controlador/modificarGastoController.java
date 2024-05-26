@@ -81,8 +81,8 @@ public class modificarGastoController implements Initializable {
     public void setCosas(Charge c){
         addCategoria.setButtonCell(new modificarGastoController.catButtCell());
         gasto=c;
-        addNombre.setText(gasto.getName());
         cat= gasto.getCategory();
+        addNombre.setText(gasto.getName());
         addFecha.setValue(gasto.getDate());
         addDesc.setText(gasto.getDescription());
         addCategoria.setPromptText(gasto.getCategory().getName());
@@ -96,14 +96,25 @@ public class modificarGastoController implements Initializable {
     
     }
     public void initialize(URL url, ResourceBundle rb) {
-        addCoste.focusedProperty().addListener((ob,oldV,newV)->{if(!newV){checkCoste();}});   
+       addCoste.textProperty().addListener(new ChangeListener<String>() {
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    addCoste.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+       addCategoria.valueProperty().addListener(
+               (ob,oldV,newV) ->{cambioCat=true;       }
+       
+       );
+       
+        
         addCategoria.setCellFactory(c -> new modificarGastoController.catBoxListCell());
         addCategoria.setButtonCell(new modificarGastoController.catButtCell());
-        addCategoria.valueProperty().addListener(
-                (ob,oldV,newV)-> {cambioCat=true;}
-        );
         
+
         errorCantidad.setVisible(false);
+
         errorAceptar.setVisible(false);
         addFecha.setDayCellFactory((DatePicker picker) -> {
             return new DateCell() {
@@ -158,22 +169,12 @@ public class modificarGastoController implements Initializable {
         }
             else{
                     
-            if(getNombre()!=null && getCoste()!=null && getDate()!=null && getDesc()!=null /*&& getCategory()!=null && getImage()!=null*/){
-                datosV=true;
-                gasto.setName(addNombre.getText());
-                gasto.setDate(addFecha.getValue());
-                gasto.setCost(Double.parseDouble(addCoste.getText()));
-                gasto.setDescription(addDesc.getText());
-                gasto.setImageScan(imagen);
-                if(cambioCat){
-                            gasto.setCategory(addCategoria.getValue());
-
-                }
-                else{
-                    gasto.setCategory(cat);
+            if(getNombre()!=null && getCoste()!=null && getDate()!=null && getDesc()!=null ){
+                if(!cambioCat){
+                    addCategoria.setValue(cat);
                     
                 }
-                
+                datosV=true;
                 Stage stage1 = (Stage) buttonAceptar.getScene().getWindow();
                 stage1.close();
                 
@@ -206,11 +207,6 @@ public class modificarGastoController implements Initializable {
     }
     public boolean getDatosV(){
         return datosV;
-    }
-    public Charge getGasto(){
-        
-        
-        return gasto;
     }
     @FXML
     private void cancelar(ActionEvent event) {

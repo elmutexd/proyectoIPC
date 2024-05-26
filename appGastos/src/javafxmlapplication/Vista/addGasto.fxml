@@ -72,10 +72,6 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ComboBox>
-            <Button mnemonicParsing="false" onAction="#crarCat" style="-fx-background-color: lightgreen;" text="Crear ">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></Button>
          </children>
       </HBox>
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="14" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES">
@@ -137,7 +133,7 @@
       </Label>
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.rowIndex="5">
          <children>
-            <Label text="Fecha" textFill="WHITE" />
+            <Label text="Fecha" textFill="WHITE" HBox.hgrow="ALWAYS" />
             <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="*" />
          </children>
          <GridPane.margin>
@@ -146,16 +142,16 @@
       </HBox>
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.rowIndex="3">
          <children>
-            <Label text="Coste" textFill="WHITE" />
+            <Label text="Coste" textFill="WHITE" HBox.hgrow="ALWAYS" />
             <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="*" />
          </children>
          <GridPane.margin>
             <Insets left="15.0" />
          </GridPane.margin>
       </HBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.rowIndex="1">
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.halignment="RIGHT" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES">
          <children>
-            <Label text="Nombre" textFill="WHITE" />
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="Nombre" textFill="WHITE" HBox.hgrow="ALWAYS" />
             <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="*" />
          </children>
          <GridPane.margin>
@@ -164,7 +160,7 @@
       </HBox>
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.rowIndex="7">
          <children>
-            <Label text="Descripción" textFill="WHITE" />
+            <Label text="Descripción" textFill="WHITE" HBox.hgrow="ALWAYS" />
             <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="*" />
          </children>
          <GridPane.margin>
@@ -173,7 +169,7 @@
       </HBox>
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.rowIndex="12">
          <children>
-            <Label text="Categoría" textFill="WHITE" />
+            <Label text="Categoría" textFill="WHITE" HBox.hgrow="ALWAYS" />
             <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="*" />
          </children>
          <GridPane.margin>
@@ -182,7 +178,7 @@
       </HBox>
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="14">
          <children>
-            <Label text="Imagen" textFill="WHITE" />
+            <Label text="Imagen" textFill="WHITE" HBox.hgrow="ALWAYS" />
          </children>
          <GridPane.margin>
             <Insets left="15.0" />
