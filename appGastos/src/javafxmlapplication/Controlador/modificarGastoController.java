@@ -71,6 +71,8 @@ public class modificarGastoController implements Initializable {
     private Charge gasto;
     @FXML
     private Label errorCantidad;
+    boolean cambioCat=false;
+    private Category cat;
 
     /**
      * Initializes the controller class.
@@ -80,9 +82,9 @@ public class modificarGastoController implements Initializable {
         addCategoria.setButtonCell(new modificarGastoController.catButtCell());
         gasto=c;
         addNombre.setText(gasto.getName());
+        cat= gasto.getCategory();
         addFecha.setValue(gasto.getDate());
         addDesc.setText(gasto.getDescription());
-        addCategoria.setValue(gasto.getCategory());
         addCategoria.setPromptText(gasto.getCategory().getName());
         textoImagen.setText(gasto.getImageScan().toString());
         
@@ -97,7 +99,10 @@ public class modificarGastoController implements Initializable {
         addCoste.focusedProperty().addListener((ob,oldV,newV)->{if(!newV){checkCoste();}});   
         addCategoria.setCellFactory(c -> new modificarGastoController.catBoxListCell());
         addCategoria.setButtonCell(new modificarGastoController.catButtCell());
-
+        addCategoria.valueProperty().addListener(
+                (ob,oldV,newV)-> {cambioCat=true;}
+        );
+        
         errorCantidad.setVisible(false);
         errorAceptar.setVisible(false);
         addFecha.setDayCellFactory((DatePicker picker) -> {
@@ -155,6 +160,20 @@ public class modificarGastoController implements Initializable {
                     
             if(getNombre()!=null && getCoste()!=null && getDate()!=null && getDesc()!=null /*&& getCategory()!=null && getImage()!=null*/){
                 datosV=true;
+                gasto.setName(addNombre.getText());
+                gasto.setDate(addFecha.getValue());
+                gasto.setCost(Double.parseDouble(addCoste.getText()));
+                gasto.setDescription(addDesc.getText());
+                gasto.setImageScan(imagen);
+                if(cambioCat){
+                            gasto.setCategory(addCategoria.getValue());
+
+                }
+                else{
+                    gasto.setCategory(cat);
+                    
+                }
+                
                 Stage stage1 = (Stage) buttonAceptar.getScene().getWindow();
                 stage1.close();
                 
@@ -187,6 +206,11 @@ public class modificarGastoController implements Initializable {
     }
     public boolean getDatosV(){
         return datosV;
+    }
+    public Charge getGasto(){
+        
+        
+        return gasto;
     }
     @FXML
     private void cancelar(ActionEvent event) {

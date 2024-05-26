@@ -319,13 +319,7 @@ public class CuentaController implements Initializable {
         stage.showAndWait();
         modificarGastoController post = loader.getController();
         if(post.getDatosV()){
-            cargo.setName(post.getNombre());
-            cargo.setCost(post.getCoste());
-            cargo.setDate(post.getDate());
-            cargo.setCategory(post.getCategory());
-            cargo.setDescription(post.getDesc());
-            cargo.setImageScan(post.getImage());
-            cargo.setUnits(1);
+            datos.set(indice, post.getGasto());
             tabla.refresh();
         }
         
