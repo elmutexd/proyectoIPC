@@ -54,7 +54,7 @@
                      </tickLabelFont></NumberAxis>
               </yAxis>
             </BarChart>
-            <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="39.0" prefWidth="64.0" VBox.vgrow="NEVER">
+            <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="39.0" prefWidth="466.0" VBox.vgrow="NEVER">
                <children>
                   <Button mnemonicParsing="false" onAction="#exit" prefHeight="34.0" prefWidth="62.0" style="-fx-background-color: LIGHTGREEN; -fx-font-weight: bold;" text="Salir" />
                </children>

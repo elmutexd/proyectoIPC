@@ -58,9 +58,14 @@ public class DetallesController implements Initializable {
     }
 
     @FXML
+<<<<<<< HEAD
     private void aceptar(ActionEvent event) {
         Stage stage1 = (Stage) nombre.getScene().getWindow();
         stage1.close();
+=======
+    private void salir(ActionEvent event) {
+        nombre.getScene().getWindow().hide();
+>>>>>>> f06f2a0ecec1055cf92397e2cbdae484e1cc4254
     }
     
 }
