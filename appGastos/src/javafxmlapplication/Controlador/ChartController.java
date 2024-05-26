@@ -216,4 +216,9 @@ public class ChartController implements Initializable {
         makeChart(current);
         ano.setText(Integer.toString(current));
     }
+
+    @FXML
+    private void exit(ActionEvent event) {
+        ano.getScene().getWindow().hide();
+    }
 }
