@@ -231,7 +231,7 @@ public class CuentaController implements Initializable {
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
-        stage.setTitle("App Gastos");
+        stage.setTitle("Añadir Gasto");
         stage.initModality(Modality.APPLICATION_MODAL);
         AddGastoController controlador = loader.getController();
         stage.showAndWait();
@@ -303,7 +303,7 @@ public class CuentaController implements Initializable {
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
-        stage.setTitle("App Gastos");
+        stage.setTitle("Modificar Gasto");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
         modificarGastoController post = loader.getController();
@@ -327,7 +327,7 @@ public class CuentaController implements Initializable {
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
-        stage.setTitle("App Gastos");
+        stage.setTitle("Categorías");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
         
@@ -343,7 +343,7 @@ public class CuentaController implements Initializable {
         det.setCosas(tabla.getSelectionModel().getSelectedItem());
         Stage stage = new Stage();
         stage.setScene(scene);
-        stage.setTitle("App Gastos");
+        stage.setTitle("Detalles de gasto");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
     }
@@ -371,7 +371,7 @@ public class CuentaController implements Initializable {
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
-        stage.setTitle("App Gastos");
+        stage.setTitle("Imprimir Gastos");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
         
@@ -385,7 +385,7 @@ public class CuentaController implements Initializable {
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
-        stage.setTitle("App Gastos");
+        stage.setTitle("Visualizar Gastos");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
     }

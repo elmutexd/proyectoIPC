@@ -86,7 +86,7 @@ public class VistaListaControlador_1 implements Initializable {
         Scene scene = new Scene(root,500,300);
         Stage stage = new Stage();
         stage.setScene(scene);
-        stage.setTitle("Vista datos categoria");
+        stage.setTitle("Crear Categoría");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
         iniLista();
@@ -113,7 +113,7 @@ public class VistaListaControlador_1 implements Initializable {
         Scene scene = new Scene(root,500,300);
         Stage stage = new Stage();
         stage.setScene(scene);
-        stage.setTitle("Vista datos persona");
+        stage.setTitle("Modificar Categoría");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
         catEditar.setName(controladorPersona.Nombre());
