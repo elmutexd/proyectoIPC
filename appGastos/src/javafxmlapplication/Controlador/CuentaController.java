@@ -234,26 +234,15 @@ public class CuentaController implements Initializable {
         stage.setTitle("App Gastos");
         stage.initModality(Modality.APPLICATION_MODAL);
         AddGastoController controlador = loader.getController();
-
         stage.showAndWait();
         if(controlador.getDatosV()){
             Acount.getInstance().registerCharge(controlador.getNombre(),controlador.getDesc(),Double.parseDouble(controlador.getCoste()),1,controlador.getImage(),controlador.getDate(),controlador.getCategory());
             datos.add(Acount.getInstance().getUserCharges().get(datos.size()));
             if(datos.size()==1){
                 fechaDesde.setValue(datos.get(0).getDate());
-            
             }
-
-            
-           
-            actDatos(fechaDesde.getValue(),fechaHasta.getValue());
-            
+            actDatos(fechaDesde.getValue(),fechaHasta.getValue()); 
         }
-            
-            
-
-       
-        
     }
 
     @FXML

@@ -120,6 +120,11 @@ public class VistaListaControlador_1 implements Initializable {
         catEditar.setDescription(controladorPersona.Descripcion());
         iniLista();
     }
+
+    @FXML
+    private void salir(ActionEvent event) {
+        catListView.getScene().getWindow().hide();
+    }
     
     class CatListCell extends ListCell<Category> {
 
