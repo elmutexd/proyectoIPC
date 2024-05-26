@@ -232,29 +232,18 @@ public class CuentaController implements Initializable {
         Stage stage = new Stage();
         stage.setResizable(false);
         stage.setScene(scene);
-        stage.setTitle("App Gastos");
+        stage.setTitle("Añadir Gasto");
         stage.initModality(Modality.APPLICATION_MODAL);
         AddGastoController controlador = loader.getController();
-
         stage.showAndWait();
         if(controlador.getDatosV()){
             Acount.getInstance().registerCharge(controlador.getNombre(),controlador.getDesc(),Double.parseDouble(controlador.getCoste()),1,controlador.getImage(),controlador.getDate(),controlador.getCategory());
             datos.add(Acount.getInstance().getUserCharges().get(datos.size()));
             if(datos.size()==1){
                 fechaDesde.setValue(datos.get(0).getDate());
-            
             }
-
-            
-           
-            actDatos(fechaDesde.getValue(),fechaHasta.getValue());
-            
+            actDatos(fechaDesde.getValue(),fechaHasta.getValue()); 
         }
-            
-            
-
-       
-        
     }
 
     @FXML
@@ -315,7 +304,7 @@ public class CuentaController implements Initializable {
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
-        stage.setTitle("App Gastos");
+        stage.setTitle("Modificar Gasto");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
         modificarGastoController post = loader.getController();
@@ -345,7 +334,7 @@ public class CuentaController implements Initializable {
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
-        stage.setTitle("App Gastos");
+        stage.setTitle("Categorías");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
         
@@ -361,7 +350,7 @@ public class CuentaController implements Initializable {
         det.setCosas(tabla.getSelectionModel().getSelectedItem());
         Stage stage = new Stage();
         stage.setScene(scene);
-        stage.setTitle("App Gastos");
+        stage.setTitle("Detalles de gasto");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
     }
@@ -389,7 +378,7 @@ public class CuentaController implements Initializable {
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
-        stage.setTitle("App Gastos");
+        stage.setTitle("Imprimir Gastos");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
         
@@ -403,7 +392,7 @@ public class CuentaController implements Initializable {
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
-        stage.setTitle("App Gastos");
+        stage.setTitle("Visualizar Gastos");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
     }

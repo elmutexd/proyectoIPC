@@ -79,13 +79,20 @@ public class modificarGastoController implements Initializable {
      */
     
     public void setCosas(Charge c){
+        addCategoria.setCellFactory(i -> new modificarGastoController.catBoxListCell());
         addCategoria.setButtonCell(new modificarGastoController.catButtCell());
+<<<<<<< HEAD
         gasto=c;
         cat= gasto.getCategory();
         addNombre.setText(gasto.getName());
+=======
+        gasto = c;
+        addNombre.setText(gasto.getName());
+        cat = gasto.getCategory();
+>>>>>>> 1cf1eb33b81363399a9a9fca7f7618ad4622b915
         addFecha.setValue(gasto.getDate());
         addDesc.setText(gasto.getDescription());
-        addCategoria.setPromptText(gasto.getCategory().getName());
+        addCategoria.getSelectionModel().select(cat);
         textoImagen.setText(gasto.getImageScan().toString());
         
         if(gasto.getImageScan()!=null){
@@ -129,6 +136,7 @@ public class modificarGastoController implements Initializable {
         try{
         ObservableList<Category> observableList = FXCollections.observableList(Acount.getInstance().getUserCategories());
         addCategoria.setItems(observableList);
+        addCategoria.setValue(gasto.getCategory());
         
         }
         catch(Exception e){
