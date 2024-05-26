@@ -4,54 +4,110 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="417.0" spacing="20.0" style="-fx-background-color: BLACK;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.Controlador.CambioConstrasenyaController">
+<VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="417.0" spacing="20.0" style="-fx-background-color: LIGHTGREEN;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.Controlador.CambioConstrasenyaController">
    <children>
-      <Text fill="LIGHTGREEN" strokeType="OUTSIDE" strokeWidth="0.0" text="CAMBIAR CONTRASEÑA" underline="true">
+      <Pane prefHeight="13.0" prefWidth="337.0" scaleX="2.0" scaleY="5.0" style="-fx-background-color: BLACK;" translateY="380.0">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Pane>
+      <Pane prefHeight="13.0" prefWidth="337.0" scaleX="2.0" scaleY="4.0" style="-fx-background-color: BLACK;" translateY="30.0">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Pane>
+      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="CAMBIAR CONTRASEÑA" underline="true">
          <font>
             <Font name="Arial Bold" size="16.0" />
          </font>
       </Text>
-      <VBox prefHeight="200.0" prefWidth="100.0">
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="314.0">
          <children>
             <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario" />
+                  <Text fill="DARKGREEN" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario" />
                   <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="*" />
                </children>
             </HBox>
-            <TextField VBox.vgrow="ALWAYS">
+            <TextField fx:id="txtUser" VBox.vgrow="ALWAYS">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
             </TextField>
-            <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+            <HBox alignment="BOTTOM_LEFT" prefHeight="358.0" prefWidth="314.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Constraseña" />
+                  <Text fill="DARKGREEN" strokeType="OUTSIDE" strokeWidth="0.0" text="Constraseña" />
                   <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="*" />
+                  <Text fx:id="errPass" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario y/o contraseña incorrectos" visible="false" />
                </children>
             </HBox>
-            <PasswordField />
-            <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+            <HBox fx:id="HBoxHideCont" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Nueva contraseña" />
-                  <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="*" />
+                  <PasswordField fx:id="txtPassword" prefHeight="25.0" prefWidth="267.0" />
+                  <ImageView fitHeight="28.0" fitWidth="27.0" onMouseClicked="#showPass">
+                     <image>
+                        <Image url="@../../imagenes/close-eye.png" />
+                     </image>
+                  </ImageView>
                </children>
             </HBox>
-            <PasswordField />
+            <HBox fx:id="HBoxShowCont" prefHeight="100.0" prefWidth="200.0" translateY="-28.0" visible="false">
+               <children>
+                  <TextField fx:id="txtShowPass" prefHeight="25.0" prefWidth="215.0" />
+                  <ImageView fx:id="txtShowPass" fitHeight="24.0" fitWidth="27.0" onMouseClicked="#hidePass">
+                     <image>
+                        <Image url="@../../imagenes/view.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="BOTTOM_LEFT" prefHeight="0.0" prefWidth="314.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <Text fill="DARKGREEN" strokeType="OUTSIDE" strokeWidth="0.0" text="Nueva contraseña" />
+                  <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="*" />
+                  <Text fx:id="errFormatoIncorrecto" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Formato incorrecto" visible="false" />
+               </children>
+            </HBox>
+            <HBox fx:id="HBoxHideRepCont" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <PasswordField fx:id="txtRepPass" prefHeight="25.0" prefWidth="265.0" promptText="Mayúscula, 8 o más caracteres y uno especial" />
+                  <ImageView fx:id="txtHideNewPass" fitHeight="28.0" fitWidth="27.0" onMouseClicked="#showNewPass">
+                     <image>
+                        <Image url="@../../imagenes/close-eye.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox fx:id="HBoxShowRepCont" prefHeight="100.0" prefWidth="200.0" translateY="-28.0" visible="false">
+               <children>
+                  <TextField fx:id="txtShowRepPass" prefHeight="25.0" prefWidth="215.0" />
+                  <ImageView fx:id="txtShowNewPass" fitHeight="24.0" fitWidth="27.0" onMouseClicked="#hideNewPass">
+                     <image>
+                        <Image url="@../../imagenes/view.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
          </children>
          <VBox.margin>
             <Insets right="120.0" />
          </VBox.margin>
       </VBox>
+      <Text fx:id="contrCambiada" fill="GREEN" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña cambiada con éxito" visible="false" />
       <HBox alignment="BOTTOM_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="55.0" prefWidth="337.0" spacing="20.0" VBox.vgrow="ALWAYS">
          <children>
-            <Button mnemonicParsing="false" text="Cancelar" HBox.hgrow="ALWAYS" />
-            <Button defaultButton="true" mnemonicParsing="false" text="Aceptar" HBox.hgrow="ALWAYS" />
+            <Text fx:id="errDatos" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="No deben haber campos vacíos" visible="false" />
+            <Button mnemonicParsing="false" onAction="#cancelar" text="Cancelar" HBox.hgrow="ALWAYS" />
+            <Button defaultButton="true" mnemonicParsing="false" onAction="#aceptar" text="Aceptar" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
    </children>

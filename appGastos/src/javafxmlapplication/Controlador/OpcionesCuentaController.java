@@ -153,7 +153,7 @@ public class OpcionesCuentaController implements Initializable {
         stage.setTitle("App Gastos");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
-        CambioContrasenyaController contra = loader.load();
+        CambioConstrasenyaController contra = loader.load();
         
         
     }

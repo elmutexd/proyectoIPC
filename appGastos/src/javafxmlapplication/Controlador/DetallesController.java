@@ -8,17 +8,15 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
 import model.Charge;
 
 /**
  * FXML Controller class
  *
- * @author Gabriel
+ * @author julil
  */
 public class DetallesController implements Initializable {
 
@@ -40,12 +38,7 @@ public class DetallesController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-            
-            
-            
-            
-            
-
+        
     }
     public void setCosas(Charge gasto){
         nombre.setText(gasto.getName());
@@ -54,7 +47,6 @@ public class DetallesController implements Initializable {
         coste.setText(gasto.getCost()+ "$");
         fecha.setText(gasto.getDate().toString());
         imagen.setImage(gasto.getImageScan());
-    
     }
 
     @FXML

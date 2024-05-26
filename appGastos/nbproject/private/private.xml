@@ -3,19 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
+            <file>file:/C:/Users/julil/Documents/Uni/2º/IPC/proyectoIPC/appGastos/src/javafxmlapplication/Vista/cambioContrasenya.fxml</file>
+            <file>file:/C:/Users/julil/Documents/Uni/2º/IPC/proyectoIPC/appGastos/src/javafxmlapplication/Controlador/CambioConstrasenyaController.java</file>
             <file>file:/C:/Users/julil/Documents/Uni/2º/IPC/proyectoIPC/appGastos/src/javafxmlapplication/Controlador/CuentaController.java</file>
+            <file>file:/C:/Users/julil/Documents/Uni/2º/IPC/proyectoIPC/appGastos/src/javafxmlapplication/Controlador/OpcionesCuentaController.java</file>
             <file>file:/C:/Users/julil/Documents/Uni/2º/IPC/proyectoIPC/appGastos/src/javafxmlapplication/Controlador/ChartController.java</file>
             <file>file:/C:/Users/julil/Documents/Uni/2º/IPC/proyectoIPC/appGastos/src/javafxmlapplication/Vista/detalles.fxml</file>
-=======
-<<<<<<< HEAD
-            <file>file:/C:/Users/Gabriel/Desktop/ipc2/proyectoIPC/appGastos/src/javafxmlapplication/Controlador/modificarGastoController.java</file>
-            <file>file:/C:/Users/Gabriel/Desktop/ipc2/proyectoIPC/appGastos/src/javafxmlapplication/Controlador/DetallesController.java</file>
-            <file>file:/C:/Users/Gabriel/Desktop/ipc2/proyectoIPC/appGastos/src/javafxmlapplication/Controlador/CuentaController.java</file>
-=======
-            <file>file:/C:/Users/julil/Documents/Uni/2º/IPC/proyectoIPC/appGastos/src/javafxmlapplication/Controlador/InicioSesionController.java</file>
->>>>>>> f06f2a0ecec1055cf92397e2cbdae484e1cc4254
->>>>>>> d4350f5b258fe151dec7076218235d45ec458ba8
         </group>
     </open-files>
 </project-private>
