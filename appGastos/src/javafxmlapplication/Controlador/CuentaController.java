@@ -230,6 +230,7 @@ public class CuentaController implements Initializable {
         Parent root = loader.load();
         Scene scene = new Scene(root);
         Stage stage = new Stage();
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.setTitle("Añadir Gasto");
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -308,7 +309,13 @@ public class CuentaController implements Initializable {
         stage.showAndWait();
         modificarGastoController post = loader.getController();
         if(post.getDatosV()){
-            datos.set(indice, post.getGasto());
+            cargo.setName(post.getNombre());
+            cargo.setCost(post.getCoste());
+            cargo.setDate(post.getDate());
+            cargo.setCategory(post.getCategory());
+            cargo.setDescription(post.getDesc());
+            cargo.setImageScan(post.getImage());
+            cargo.setUnits(1);
             tabla.refresh();
         }
         
@@ -388,6 +395,20 @@ public class CuentaController implements Initializable {
         stage.setTitle("Visualizar Gastos");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
+    }
+
+    @FXML
+    private void options(ActionEvent event) throws IOException {
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("/javafxmlapplication/Vista/opcionesCuenta.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.setTitle("App Gastos");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
+        
     }
 
 

@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <GridPane prefWidth="400.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.Controlador.modificarGastoController">
   <columnConstraints>
@@ -84,10 +85,9 @@
                   <Insets />
                </HBox.margin>
             </ComboBox>
-            <Button mnemonicParsing="false" onAction="#crarCat" text="Crear " />
          </children>
       </HBox>
-      <Label text="Añadir Gasto" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="SOMETIMES" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES">
+      <Label text="Modificar Gasto" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="SOMETIMES" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -129,5 +129,11 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
+      <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="*" GridPane.rowIndex="1" />
+      <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="*" GridPane.rowIndex="3" />
+      <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="*" GridPane.rowIndex="5" />
+      <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="*" GridPane.rowIndex="7" />
+      <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="*" GridPane.rowIndex="10" />
+      <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="*" GridPane.rowIndex="12" />
    </children>
 </GridPane>

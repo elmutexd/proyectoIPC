@@ -78,7 +78,6 @@ public class AddGastoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         errorCantidad.setVisible(false);
-        
         addCategoria.setCellFactory(c -> new catBoxListCell());
         addCategoria.setButtonCell(new catButtCell());
         
