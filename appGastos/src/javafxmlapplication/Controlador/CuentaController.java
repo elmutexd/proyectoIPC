@@ -64,6 +64,9 @@ public class CuentaController implements Initializable {
     private TableColumn<Charge, String> cCoste;
     
     private ObservableList<Charge> datos=null;
+    private ObservableList<Charge> aux=null;
+
+    
     @FXML
     private Button borrarButton;
     @FXML
@@ -77,7 +80,9 @@ public class CuentaController implements Initializable {
     @FXML
     private Button buttonDetalles;
     private Charge gasto;
+    @FXML
     private DatePicker fechaDesde;
+    @FXML
     private DatePicker fechaHasta;
 
     /**
@@ -108,24 +113,40 @@ public class CuentaController implements Initializable {
                 (cargo)-> new SimpleStringProperty(cargo.getValue().getDate().toString()) ); 
             cCoste.setCellValueFactory(
                 (cargo)-> new SimpleStringProperty((Double.toString(cargo.getValue().getCost()))) );
-            fechaHasta.setValue(LocalDate.now());
-            fechaDesde.setValue(fechaMin(Acount.getInstance().getUserCharges()));
+            if(datos.size()!=0){
+                fechaHasta.setValue(fechaMax(Acount.getInstance().getUserCharges()));
+            
+            }
+            else{
+                    fechaHasta.setValue(LocalDate.now());
+
+            }
+            if(datos.size()!=0){
+                        fechaDesde.setValue(fechaMin(Acount.getInstance().getUserCharges()));
+            }
+            else{
+                fechaDesde.setValue(LocalDate.now());
+            }
             fechaHasta.valueProperty().addListener((ob,oldV,newV)->{
                    try{
-                    actDatos(fechaDesde.getValue(),newV);
+                       System.out.println("Empezando try actualizar fecha hasta...");
+                        actDatos(fechaDesde.getValue(),fechaHasta.getValue());
+                        System.out.println("Try acabado fecha hasta");
                     }
                    catch(Exception e){
-                       System.out.println("Excepcion en fecha hasta");
+                       System.out.println(e.toString());
                    }
             
             });
             fechaDesde.valueProperty().addListener((ob,oldV,newV)->{
             
                 try{
-                    actDatos(newV,fechaHasta.getValue());
+                    System.out.println("Empezando try actualizar fecha desde...");
+                        actDatos(fechaDesde.getValue(),fechaHasta.getValue());
+                        System.out.println("Try acabado fecha dede");
                     }
                    catch(Exception e){
-                       System.out.println("Excepcion en fecha desde");
+                       System.out.println(e.toString());
                    }
                 
             });
@@ -137,60 +158,39 @@ public class CuentaController implements Initializable {
         
     }
     private void actDatos(LocalDate fechaDesde, LocalDate fechaHasta) throws AcountDAOException, IOException{
-        List <Charge> lista = Acount.getInstance().getUserCharges();
-        
-        for(int i=0;i<lista.size();i++){
-            if((menorqueFecha(lista.get(i).getDate(),fechaHasta) && mayorqueFecha(lista.get(i).getDate(),fechaDesde))!=true){
-                lista.remove(i);
+                    System.out.println("Empezando try actualizar fecha desde...");
+                        aux = FXCollections.observableArrayList();
+                        for(int i=0;i<datos.size();i++){
+                            if((datos.get(i).getDate().isAfter(fechaDesde) ||(datos.get(i).getDate().equals((ChronoLocalDate)fechaDesde)) )&& (datos.get(i).getDate().isBefore((ChronoLocalDate)fechaHasta) ||(datos.get(i).getDate().equals((ChronoLocalDate)fechaHasta))) ){
+                                aux.add(datos.get(i));
+                                
+                            }
+                        }
+                        tabla.setItems(aux);
+                        aux= tabla.getItems();
+                        tabla.refresh();
+                        System.out.println("Try acabado fecha dede");
+    }
+    private LocalDate fechaMax(List<Charge> lista){
+        LocalDate max= LocalDate.MIN;
+        for(int i =0;i<lista.size();i++){
+            if(lista.get(i).getDate().getYear()>max.getYear()){
+                max= lista.get(i).getDate();
+            }
+            else if(lista.get(i).getDate().getYear()==max.getYear()){
+                if(lista.get(i).getDate().getMonthValue()>max.getMonthValue()){
+                    max= lista.get(i).getDate();
+                }
+                else if(lista.get(i).getDate().getMonthValue()==max.getMonthValue()){
+                    if(lista.get(i).getDate().getDayOfMonth()>max.getDayOfMonth()){
+                        max=lista.get(i).getDate();
+                    }
+                }
             }
             
         }
-        ArrayList<Charge> misdatos= new ArrayList<>(lista);
-        datos = FXCollections.observableArrayList(misdatos);
-        tabla.setItems(datos);
-        datos = tabla.getItems();
-        tabla.refresh();
         
-
-        
-    
-    }
-    private boolean mayorqueFecha(LocalDate x, LocalDate y){
-        boolean res = false;
-        if(x.getYear()>y.getYear()){
-            res= true;
-        }
-        else if(x.getYear()==y.getYear()){
-            if(x.getMonthValue()>y.getMonthValue()){
-                res= true;
-            }
-            else if(x.getMonthValue()==y.getMonthValue()){
-                if(x.getDayOfMonth()>=y.getDayOfMonth()){
-                    res= true;
-                }
-                
-            }
-        }
-        return res;
-        
-    }
-    private boolean menorqueFecha(LocalDate x, LocalDate y){
-        boolean res = false;
-        if(x.getYear()<y.getYear()){
-            res= true;
-        }
-        else if(x.getYear()==y.getYear()){
-            if(x.getMonthValue()<y.getMonthValue()){
-                res= true;
-            }
-            else if(x.getMonthValue()==y.getMonthValue()){
-                if(x.getDayOfMonth()<=y.getDayOfMonth()){
-                    res= true;
-                }
-                
-            }
-        }
-        return res;
+        return max;
     
     }
     private LocalDate fechaMin(List<Charge> lista){
@@ -219,6 +219,7 @@ public class CuentaController implements Initializable {
         datos = FXCollections.observableArrayList(misdatos);
         tabla.setItems(datos);
         datos = tabla.getItems();
+        tabla.refresh();
         
         
     }
@@ -238,6 +239,15 @@ public class CuentaController implements Initializable {
         if(controlador.getDatosV()){
             Acount.getInstance().registerCharge(controlador.getNombre(),controlador.getDesc(),Double.parseDouble(controlador.getCoste()),1,controlador.getImage(),controlador.getDate(),controlador.getCategory());
             datos.add(Acount.getInstance().getUserCharges().get(datos.size()));
+            if(datos.size()==1){
+                fechaDesde.setValue(datos.get(0).getDate());
+            
+            }
+
+            
+           
+            actDatos(fechaDesde.getValue(),fechaHasta.getValue());
+            
         }
             
             
@@ -255,6 +265,7 @@ public class CuentaController implements Initializable {
         if(opciones.isPresent() && opciones.get()==ButtonType.OK){
             boolean bol=Acount.getInstance().removeCharge(tabla.getSelectionModel().getSelectedItem());
             datos.remove(tabla.getSelectionModel().getSelectedIndex());
+            actDatos(fechaDesde.getValue(),fechaHasta.getValue());
 
             alerta.close();
             

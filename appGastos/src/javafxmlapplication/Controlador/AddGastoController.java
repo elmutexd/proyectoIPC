@@ -58,6 +58,7 @@ public class AddGastoController implements Initializable {
     private TextArea addDesc;
     @FXML
     private ComboBox<Category> addCategoria;
+    @FXML
     private Text textoImagen;
     @FXML
     private Button subirImagen;
