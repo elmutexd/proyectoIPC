@@ -221,4 +221,5 @@ public class ChartController implements Initializable {
     private void exit(ActionEvent event) {
         ano.getScene().getWindow().hide();
     }
+
 }
