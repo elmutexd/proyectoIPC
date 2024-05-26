@@ -81,19 +81,19 @@ public class modificarGastoController implements Initializable {
     public void setCosas(Charge c){
         addCategoria.setCellFactory(i -> new modificarGastoController.catBoxListCell());
         addCategoria.setButtonCell(new modificarGastoController.catButtCell());
-<<<<<<< HEAD
         gasto=c;
         cat= gasto.getCategory();
         addNombre.setText(gasto.getName());
-=======
-        gasto = c;
-        addNombre.setText(gasto.getName());
-        cat = gasto.getCategory();
->>>>>>> 1cf1eb33b81363399a9a9fca7f7618ad4622b915
+        addCategoria.setPromptText(gasto.getCategory().getName());
         addFecha.setValue(gasto.getDate());
         addDesc.setText(gasto.getDescription());
-        addCategoria.getSelectionModel().select(cat);
         textoImagen.setText(gasto.getImageScan().toString());
+        
+        addCategoria.valueProperty().addListener(
+                (ob,oldV,newV) ->{
+                    cambioCat=true;
+                }
+        );
         
         if(gasto.getImageScan()!=null){
             imagen = gasto.getImageScan();
